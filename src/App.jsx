@@ -9,6 +9,13 @@ function App() {
     // alert("Entrou")
     const num = cliques + 1
     setCliques(num)
+    congrats()
+  }
+
+  function congrats() {
+    if (cliques % 50 == 0) {
+      alert("Muito legal! 👍")
+    }
   }
 
   function Upgrade() {

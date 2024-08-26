@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
 html, body {
   margin: 0;
   height: 100%;
+  -webkit-user-select: none;
 }
 
 .container {
@@ -28,7 +32,7 @@ html, body {
 }
 
 .edecio h1 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 50px;
   margin-bottom: 2vh;
@@ -44,8 +48,13 @@ html, body {
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
 }
 
+.edecio img:active {
+  transform: scale(1.05);
+}
+
 .upgrades {
-  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 50px;
 }
@@ -53,6 +62,46 @@ html, body {
 .upgrade__container {
   display: flex;
   justify-content: center;
-  font-size: 30px;
   margin-top: 5vh;
+}
+
+.upgrade__container h2 {
+  margin: 0;
+  padding: 10px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-size: 30px;
+  color: white;
+  background-color: rgb(98, 216, 255);
+  border-radius: 10px 0 0 10px;
+}
+
+.upgrade__container h3 {
+  margin: 0;
+  padding: 10px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-size: 30px;
+  color: white;
+  background-color: darkorange;
+}
+
+.upgrade__container h4 {
+  margin: 0;
+  padding: 10px;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: white;
+  background-color: lightgreen;
+  border-radius: 0 10px 10px 0;
+}
+
+.upgrade__container:hover {
+  transform: scale(1.05);
+  cursor: pointer;  
+}
+
+.upgrade__container:active {
+  transform: scale(1.20);
 }

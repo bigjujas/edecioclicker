@@ -24,7 +24,7 @@ html, body {
 }
 
 .right-side {
-  background-color: lightcoral; /* Cor de fundo para visualização */
+  background-color: #F08080; /* Cor de fundo para visualização */
 }
 
 .edecio {
@@ -39,11 +39,14 @@ html, body {
   top: -10vh;
   color: #fff;
   text-shadow: 
-    5px 5px 0 #000, 
-    -1px -1px 0 #000, 
-    1px -1px 0 #000, 
-    -1px 1px 0 #000;
-  position: relative;
+  -2px -2px 0px black,   
+  2px -2px 0px black,    
+  -2px 2px 0px black,    
+  2px 2px 0px black,     
+  0px -2px 0px black,    
+  0px 2px 0px black,     
+  -2px 0px 0px black,    
+  2px 0px 0px black;
 }
 
 .edecio h1 {
@@ -53,11 +56,14 @@ html, body {
   margin-bottom: 2vh;
   color: rgb(255, 226, 59);
   text-shadow: 
-    5px 5px 0 #000, 
-    -1px -1px 0 #000, 
-    1px -1px 0 #000, 
-    -1px 1px 0 #000;
-  position: relative;
+  -2px -2px 0px black,   
+  2px -2px 0px black,    
+  -2px 2px 0px black,    
+  2px 2px 0px black,     
+  0px -2px 0px black,    
+  0px 2px 0px black,     
+  -2px 0px 0px black,    
+  2px 0px 0px black;
 }
 
 
@@ -81,7 +87,6 @@ html, body {
 
 .edecio img:active {
   transform: scale(1.05);
-  animation: shake 0.3s;
 }
 
 .upgrades {
@@ -95,24 +100,30 @@ html, body {
   font-weight: bold;
   color: #fff;
   text-shadow: 
-    5px 5px 0 #000, 
-    -1px -1px 0 #000, 
-    1px -1px 0 #000, 
-    -1px 1px 0 #000;
-  position: relative;
+  -2px -2px 0px black,   
+  2px -2px 0px black,    
+  -2px 2px 0px black,    
+  2px 2px 0px black,     
+  0px -2px 0px black,    
+  0px 2px 0px black,     
+  -2px 0px 0px black,    
+  2px 0px 0px black;
 }
 
 .upgrade__container {
   display: flex;
-  justify-content: center;
+  text-align: left;
   margin-top: 5vh;
   color: #fff;
   text-shadow: 
-    1px 1px 0 #000, 
-    -1px -1px 0 #000, 
-    1px -1px 0 #000, 
-    -1px 1px 0 #000;
-  position: relative;
+  -2px -2px 0px black,   
+  2px -2px 0px black,    
+  -2px 2px 0px black,    
+  2px 2px 0px black,     
+  0px -2px 0px black,    
+  0px 2px 0px black,     
+  -2px 0px 0px black,    
+  2px 0px 0px black;
 }
 
 .upgrade__container h2 {
@@ -133,7 +144,7 @@ html, body {
   font-weight: 600;
   font-size: 30px;
   color: white;
-  background-color: darkorange;
+  background-color: wheat;
 }
 
 .upgrade__container h4 {

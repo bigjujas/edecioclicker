@@ -12,53 +12,59 @@ function App() {
 
 // Custos Base //
 
-  const [custoUpgrade, setCustoUpgrade] = useState(10)
-  const [custoUpgradeAutomatizado, setCustoUpgradeAutomatizado] = useState(250)
-  const [custoUpgradeChad, setCustoUpgradeChad] = useState(500)
+  const [custoUpgrade1, setCustoUpgrade] = useState(10)
+  const [custoUpgrade2, setCustoUpgrade2] = useState(250)
+  const [custoUpgrade3, setCustoUpgrade3] = useState(500)
 
 // Niveis //
 
-  const [nivelUpgrade, setNivelUpgrade] = useState(0)
-  const [nivelUpgradeAutomatizado, setNivelUpgradeAutomatizado] = useState(0)
-  const [nivelUpgradeChad, setNivelUpgradeChad] = useState(0)
+  const [nivelUpgrade1, setNivelUpgrade1] = useState(0)
+  const [nivelUpgrade2, setNivelUpgrade2] = useState(0)
+  const [nivelUpgrade3, setNivelUpgrade3] = useState(0)
 
 // Multiplicadores //
 
-const [cpsUpgrade, setCpsUpgrade] = useState(1)
-const [cpsUpgradeAutomatizado, setCpsUpgradeAutomatizado] = useState(10)
-const [cpsUpgradeChad, setCpsUpgradeChad] = useState(10)
+const [cpsUpgrade1, setCpsUpgrade1] = useState(1)
+const [cpsUpgrade2, setCpsUpgrade2] = useState(10)
+const [cpsUpgrade3, setCpsUpgrade3] = useState(10)
+
+// QoL //
+
+const displayCliques = cliques >= 1000 ? Math.floor(cliques) : parseFloat(cliques.toFixed(2));
+
+// Funçoes //
 
   function Clique() {
     setCliques(prevCliques => prevCliques + multiplicador)
   }
 
-  function Upgrade() {
-    if (cliques >= custoUpgrade) {
-      setCliques(prevCliques => prevCliques - custoUpgrade)
-      setCpsUpgrade(prevCps => (prevCps * 1.25))
-      setMultiplicador(prevMultiplicador => prevMultiplicador + cpsUpgrade)
+  function Upgrade1() {
+    if (cliques >= custoUpgrade1) {
+      setCliques(prevCliques => prevCliques - custoUpgrade1)
+      setCpsUpgrade1(prevCps => (prevCps * 1.25))
+      setMultiplicador(prevMultiplicador => prevMultiplicador + cpsUpgrade1)
       setCustoUpgrade(prevCusto => Math.floor(prevCusto * 1.5)) // Aumenta o custo em 50%
-      setNivelUpgrade(prevNivel => prevNivel + 1)
+      setNivelUpgrade1(prevNivel => prevNivel + 1)
     }
   }
 
-  function UpgradeAutomatizado() {
-    if (cliques >= custoUpgradeAutomatizado) {
-      setCliques(prevCliques => prevCliques - custoUpgradeAutomatizado)
-      setCpsUpgradeAutomatizado(prevCps => (prevCps * 1.25))
+  function Upgrade2() {
+    if (cliques >= custoUpgrade2 && nivelUpgrade1 >= 10) {
+      setCliques(prevCliques => prevCliques - custoUpgrade2)
+      setCpsUpgrade2(prevCps => (prevCps * 1.25))
       setCliquesPorSegundo(prevCliquesPorSegundo => prevCliquesPorSegundo + 10)
-      setCustoUpgradeAutomatizado(prevCusto => Math.floor(prevCusto * 1.5)) // Aumenta o custo em 50%
-      setNivelUpgradeAutomatizado(prevNivel => prevNivel + 1)
+      setCustoUpgrade2(prevCusto => Math.floor(prevCusto * 1.5)) // Aumenta o custo em 50%
+      setNivelUpgrade2(prevNivel => prevNivel + 1)
     }
   }
 
-  function UpgradeChad() {
-    if (cliques >= custoUpgradeChad) {
-      setCliques(prevCliques => prevCliques - custoUpgradeChad)
-      setCpsUpgradeChad(prevCps => (prevCps * 1.25))
+  function Upgrade3() {
+    if (cliques >= custoUpgrade3 && nivelUpgrade2 >=10) {
+      setCliques(prevCliques => prevCliques - custoUpgrade3)
+      setCpsUpgrade3(prevCps => (prevCps * 1.25))
       setMultiplicador(prevMultiplicador => prevMultiplicador + 10)
-      setCustoUpgradeChad(prevCusto => Math.floor(prevCusto * 1.5))
-      setNivelUpgradeChad(prevNivel => prevNivel + 1)
+      setCustoUpgrade3(prevCusto => Math.floor(prevCusto * 1.5))
+      setNivelUpgrade3(prevNivel => prevNivel + 1)
       setEdecio(chadEdecio)
     }
   }
@@ -71,36 +77,36 @@ const [cpsUpgradeChad, setCpsUpgradeChad] = useState(10)
     return () => clearInterval(intervalo)
   }, [cliquesPorSegundo])
 
-  return (
+  return (  
     <>
       <div className="container">
         <div className="left-side">
           <div className="edecio">
           <h2 className="Cps">Pontos por Segundo: {parseFloat((multiplicador + cliquesPorSegundo).toFixed(2))} ⬇️</h2>
-            <h1>{parseFloat(cliques.toFixed(2))} 💰</h1>
+            <h1>{displayCliques} 💰</h1>
             <img src={edecio} alt="" onClick={Clique} />
           </div>
         </div>
         <div className="right-side">
           <div className="upgrades">
             <h1>Upgrades💸</h1>
-            <div className="upgrade__container" onClick={Upgrade}>
-              <h2>+{parseFloat(cpsUpgrade.toFixed(2))}</h2>
+            <div className="upgrade__container" onClick={Upgrade1}>
+              <h2>+{parseFloat(cpsUpgrade1.toFixed(2))}</h2>
               <h3>Muito Legal 👍</h3>
-              <h4>{custoUpgrade}$</h4> {/* Exibe o custo atualizado */}
-              <h5>Nv.{nivelUpgrade}</h5>
+              <h4>{custoUpgrade1}$</h4> {/* Exibe o custo atualizado */}
+              <h5>Nv.{nivelUpgrade1}</h5>
             </div>
-            <div className="upgrade__container" onClick={UpgradeAutomatizado}>
-              <h2>+{parseFloat(cpsUpgradeAutomatizado.toFixed(2))} P/s</h2>
+            <div className="upgrade__container" onClick={Upgrade2}>
+              <h2>+{parseFloat(cpsUpgrade2.toFixed(2))} P/s</h2>
               <h3>Café Quentinho ☕</h3>
-              <h4>{custoUpgradeAutomatizado}$</h4> {/* Exibe o custo atualizado */}
-              <h5>Nv.{nivelUpgradeAutomatizado}</h5>
+              <h4>{nivelUpgrade1 >= 10 ? `${custoUpgrade2}$` : "🔒"}</h4> {/* Exibe o custo atualizado */}
+              <h5>Nv.{nivelUpgrade2}</h5>
             </div>
-            <div className="upgrade__container" onClick={UpgradeChad}>
-              <h2>+{parseFloat(cpsUpgradeChad.toFixed(2))}</h2>
+            <div className="upgrade__container" onClick={Upgrade3}>
+              <h2>+{parseFloat(cpsUpgrade3.toFixed(2))}</h2>
               <h3>Muito BASED 🗿</h3>
-              <h4>{custoUpgradeChad}$</h4>
-              <h5>Nv.{nivelUpgradeChad}</h5>
+              <h4>{nivelUpgrade2 >= 10 ? `${custoUpgrade3}$` : "🔒"}</h4>
+              <h5>Nv.{nivelUpgrade3}</h5>
             </div>
           </div>
         </div>

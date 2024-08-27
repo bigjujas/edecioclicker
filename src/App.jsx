@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import './reset.css'
+import chadEdecio from './assets/chadEdecio.jpg'
+import defaultEdecio from './assets/edecio.jpg'
 
 function App() {
   const [cliques, setCliques] = useState(0)
@@ -8,6 +10,8 @@ function App() {
   const [custoUpgrade, setCustoUpgrade] = useState(10)
   const [cliquesPorSegundo, setCliquesPorSegundo] = useState(0)
   const [custoUpgradeAutomatizado, setCustoUpgradeAutomatizado] = useState(500)
+  const [edecio, setEdecio] = useState(defaultEdecio)
+  const custoUpgradeChad = 500
 
   function Clique() {
     setCliques(prevCliques => prevCliques + multiplicador)
@@ -29,6 +33,12 @@ function App() {
     }
   }
 
+  function UpgradeChad() {
+    if (cliques >= custoUpgradeChad) {
+      setEdecio(chadEdecio)
+    }
+  }
+
   useEffect(() => {
     const intervalo = setInterval(() => {
       setCliques(prevCliques => prevCliques + cliquesPorSegundo)
@@ -43,7 +53,7 @@ function App() {
         <div className="left-side">
           <div className="edecio">
             <h1>{cliques}</h1>
-            <img src="./src/assets/edecio.jpg" alt="" onClick={Clique}/>
+            <img src={edecio} alt="" onClick={Clique} />
           </div>
         </div>
         <div className="right-side">
@@ -54,6 +64,13 @@ function App() {
               <h3>Muito Legal 👍</h3>
               <h4>{custoUpgrade}$</h4> {/* Exibe o custo atualizado */}
             </div>
+            <div className="upgrade__container" onClick={UpgradeChad}>
+              <h2>Unlock CHAD mode</h2>
+              <h3>Muito BASED 🗿</h3>
+              <h4>{custoUpgradeChad}</h4>
+            </div>
+
+
             <div className="upgrade__container" onClick={UpgradeAutomatizado}>
               <h2>Clikes por segundo</h2>
               <h3>Automático 🕒</h3>

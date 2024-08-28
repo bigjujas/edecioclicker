@@ -1,10 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 
 html, body {
   margin: 0;
   height: 100%;
+  box-sizing: border-box;
   -webkit-user-select: none;
+}
+
+header {
+  background-color: rgb(31, 31, 31);
+  height: 8vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
+
+header h1 {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 2vh;
+  text-shadow: 
+  -1px -1px 0px black,   
+  1px -1px 0px black,    
+  -1px 1px 0px black,    
+  1px 1px 0px black,     
+  0px -1px 0px black,    
+  0px 1px 0px black,     
+  -1px 0px 0px black,    
+  1px 0px 0px black;
+}
+
+header h1 span {
+  color:rgb(85, 158, 255);
+}
+
+.lineheader {
+  background-color: #000000; /* Define a cor cinza */
+  height: 1vh; /* Define a altura da linha */
+  width: 100%; /* Garante que a linha ocupe toda a largura da página */
+  position: fixed; /* Ajusta o posicionamento relativo para garantir que ela fique no topo do header */
+  top: 8vh; /* Coloca a linha logo abaixo do header, ajustando conforme necessário */
 }
 
 .container {
@@ -17,6 +57,7 @@ html, body {
   align-items: center;
   justify-content: center;
   width: 50%;
+  box-sizing: border-box;
 }
 
 .left-side {
@@ -24,26 +65,37 @@ html, body {
 }
 
 .right-side {
-  background-color: lightcoral; /* Cor de fundo para visualização */
+  background-color: #ff4444; /* Cor de fundo para visualização */
 }
 
 .edecio {
   text-align: center;
 }
 
+.displaycps {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
 .Cps {
   font-family: "Poppins", sans-serif;
   font-weight: 550;
-  font-size: 40px;
-  position: relative;
+  font-size: 20px;
   top: -10vh;
   color: #fff;
+  margin-right: 3vh;
+  margin-left: 3vh;
+  margin-bottom: 2vh;
   text-shadow: 
-    5px 5px 0 #000, 
-    -1px -1px 0 #000, 
-    1px -1px 0 #000, 
-    -1px 1px 0 #000;
-  position: relative;
+  -1px -1px 0px black,   
+  1px -1px 0px black,    
+  -1px 1px 0px black,    
+  1px 1px 0px black,     
+  0px -1px 0px black,    
+  0px 1px 0px black,     
+  -1px 0px 0px black,    
+  1px 0px 0px black;
 }
 
 .edecio h1 {
@@ -53,11 +105,14 @@ html, body {
   margin-bottom: 2vh;
   color: rgb(255, 226, 59);
   text-shadow: 
-    5px 5px 0 #000, 
-    -1px -1px 0 #000, 
-    1px -1px 0 #000, 
-    -1px 1px 0 #000;
-  position: relative;
+  -2px -2px 0px black,   
+  2px -2px 0px black,    
+  -2px 2px 0px black,    
+  2px 2px 0px black,     
+  0px -2px 0px black,    
+  0px 2px 0px black,     
+  -2px 0px 0px black,    
+  2px 0px 0px black;
 }
 
 
@@ -71,17 +126,12 @@ html, body {
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes shake {
-  0% { transform: translateX(20px); }
-  25% { transform: translateX(-20px); }
-  50% { transform: translateX(20px); }
-  75% { transform: translateX(-20px); }
-  100% { transform: translateX(-20px); }
+.edecio img:hover {
+  transform: scale(1.01);
 }
 
 .edecio img:active {
-  transform: scale(1.05);
-  animation: shake 0.3s;
+  transform: scale(0.90);
 }
 
 .upgrades {
@@ -95,52 +145,56 @@ html, body {
   font-weight: bold;
   color: #fff;
   text-shadow: 
-    5px 5px 0 #000, 
-    -1px -1px 0 #000, 
-    1px -1px 0 #000, 
-    -1px 1px 0 #000;
-  position: relative;
+  -2px -2px 0px black,   
+  2px -2px 0px black,    
+  -2px 2px 0px black,    
+  2px 2px 0px black,     
+  0px -2px 0px black,    
+  0px 2px 0px black,     
+  -2px 0px 0px black,    
+  2px 0px 0px black;
 }
 
 .upgrade__container {
   display: flex;
-  justify-content: center;
+  text-align: left;
   margin-top: 5vh;
   color: #fff;
+  font-size: 30px;
   text-shadow: 
-    1px 1px 0 #000, 
-    -1px -1px 0 #000, 
-    1px -1px 0 #000, 
-    -1px 1px 0 #000;
-  position: relative;
+  -1px -1px 0px black,   
+  1px -1px 0px black,    
+  -1px 2px 0px black,    
+  1px 1px 0px black,     
+  0px -1px 0px black,    
+  0px 1px 0px black,     
+  -1px 0px 0px black,    
+  1px 0px 0px black;
 }
 
 .upgrade__container h2 {
+  font-weight: 600;
   margin: 0;
   padding: 10px;
   letter-spacing: 2px;
-  font-weight: 600;
-  font-size: 30px;
   color: white;
   background-color: rgb(98, 216, 255);
   border-radius: 10px 0 0 10px;
 }
 
 .upgrade__container h3 {
+  font-weight: 600;
   margin: 0;
   padding: 10px;
   letter-spacing: 2px;
-  font-weight: 600;
-  font-size: 30px;
   color: white;
-  background-color: darkorange;
+  background-color: wheat;
 }
 
 .upgrade__container h4 {
+  font-weight: 600;
   margin: 0;
   padding: 10px;
-  font-size: 30px;
-  font-weight: 600;
   letter-spacing: 2px;
   color: white;
   background-color: lightgreen;
@@ -150,8 +204,6 @@ html, body {
   margin: 0;
   padding: 10px;
   letter-spacing: 2px;
-  font-weight: 600;
-  font-size: 30px;
   color: white;
   background-color: rgb(98, 216, 255);
   border-radius: 0 10px 10px 0;
@@ -164,4 +216,48 @@ html, body {
 
 .upgrade__container:active {
   transform: scale(1.20);
+}
+
+.notificacao {
+  font-family: "Press Start 2P", system-ui;
+  position: absolute;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 25px;
+  transform: translate(-50%, 0); /* Inicialmente posicionada onde o clique aconteceu */
+  opacity: 0;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição rápida */
+  pointer-events: none;
+  text-shadow: 
+  -1px -1px 0px black,   
+  1px -1px 0px black,    
+  -1px 2px 0px black,    
+  1px 1px 0px black,     
+  0px -1px 0px black,    
+  0px 1px 0px black,     
+  -1px 0px 0px black,    
+  1px 0px 0px black;
+}
+
+/* Classe para fazer a notificação visível */
+.notificacao-visivel {
+  opacity: 1;
+  transform: translate(-50%, -200%); /* Ajusta a posição para subir mais alto */
+}
+
+/* Estilo de animação para o desaparecimento da notificação */
+@keyframes desaparecer {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%); /* Ajusta a posição inicial para subir rapidamente */
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -300%); /* Ajusta a posição final para subir ainda mais */
+  }
+}
+
+.notificacao {
+  animation: desaparecer 0.75s forwards; /* Reduz o tempo da animação para desaparecer */
 }

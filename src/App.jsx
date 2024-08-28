@@ -18,18 +18,21 @@ function App() {
   const [custoUpgrade1, setCustoUpgrade] = useState(15)
   const [custoUpgrade2, setCustoUpgrade2] = useState(250)
   const [custoUpgrade3, setCustoUpgrade3] = useState(500)
+  const [custoUpgrade4, setCustoUpgrade4] = useState(1000)
 
 // Niveis //
 
   const [nivelUpgrade1, setNivelUpgrade1] = useState(0)
   const [nivelUpgrade2, setNivelUpgrade2] = useState(0)
   const [nivelUpgrade3, setNivelUpgrade3] = useState(0)
+  const [nivelUpgrade4, setNivelUpgrade4] = useState(0)
 
 // Multiplicadores //
 
 const [cpsUpgrade1, setCpsUpgrade1] = useState(0.5)
-const [cpsUpgrade2, setCpsUpgrade2] = useState(1)
-const [cpsUpgrade3, setCpsUpgrade3] = useState(5)
+const [cpsUpgrade2, setCpsUpgrade2] = useState(0.5)
+const [cpsUpgrade3, setCpsUpgrade3] = useState(1.5)
+const [cpsUpgrade4, setCpsUpgrade4] = useState(3)
 
 // QoL //
 
@@ -39,6 +42,12 @@ const displayCliques = cliques >= 1000 ? Math.floor(cliques) : parseFloat(clique
   const custoStyle = (custo) => ({
   color: cliques >= custo ? '#fff' : '#e57373', // Vermelho se não tiver cliques suficientes
    });
+
+   // Estilo condicional para o container dos upgrades
+const containerStyle = (isLocked) => ({
+  cursor: isLocked ? 'not-allowed' : 'pointer',
+  filter: isLocked ? 'brightness(0.5)' : 'brightness(1)'
+});
 
 // Funçoes //
 
@@ -80,7 +89,7 @@ const displayCliques = cliques >= 1000 ? Math.floor(cliques) : parseFloat(clique
         return novoNivel;
     });
       setCliquesPorSegundo(prevCliquesPorSegundo => prevCliquesPorSegundo + cpsUpgrade1)
-      setCustoUpgrade(prevCusto => Math.floor(prevCusto * 1.2))
+      setCustoUpgrade(prevCusto => Math.floor(prevCusto * 1.5))
     }
   }
 
@@ -109,9 +118,24 @@ const displayCliques = cliques >= 1000 ? Math.floor(cliques) : parseFloat(clique
         }
         return novoNivel;
     });
-      setMultiplicador(prevMultiplicador => prevMultiplicador + cpsUpgrade3)
+      setCliquesPorSegundo(prevCliquesPorSegundo => prevCliquesPorSegundo + cpsUpgrade3)
       setCustoUpgrade3(prevCusto => Math.floor(prevCusto * 1.2))
       setEdecio(chadEdecio)
+    }
+  }
+
+  function Upgrade4() {
+    if (cliques >= custoUpgrade4 && nivelUpgrade3 >=10) {
+      setCliques(prevCliques => prevCliques - custoUpgrade4)
+      setNivelUpgrade4(prevNivel => {
+        const novoNivel = prevNivel + 1;
+        if (novoNivel % 10 === 0) {
+            setCpsUpgrade4(cpsUpgrade4 * 2);
+        }
+        return novoNivel;
+    });
+      setCliquesPorSegundo(prevCliquesPorSegundo => prevCliquesPorSegundo + cpsUpgrade4)
+      setCustoUpgrade4(prevCusto => Math.floor(prevCusto * 1.2))
     }
   }
 
@@ -149,17 +173,23 @@ const displayCliques = cliques >= 1000 ? Math.floor(cliques) : parseFloat(clique
               <h4 style={custoStyle(custoUpgrade1)}>{custoUpgrade1}$</h4> {/* Exibe o custo atualizado */}
               <h5>Nv.{nivelUpgrade1}</h5>
             </div>
-            <div className="upgrade__container" onClick={Upgrade2}>
+            <div className="upgrade__container" style={containerStyle(nivelUpgrade1 < 10)} onClick={Upgrade2}>
               <h2>+{parseFloat(cpsUpgrade2.toFixed(2))}</h2>
               <h3>Café Quentinho ☕</h3>
               <h4 style={custoStyle(custoUpgrade2)}>{nivelUpgrade1 >= 10 ? `${custoUpgrade2}$` : "🔒"}</h4> {/* Exibe o custo atualizado */}
               <h5>Nv.{nivelUpgrade2}</h5>
             </div>
-            <div className="upgrade__container" onClick={Upgrade3}>
-              <h2>+{parseFloat(cpsUpgrade3.toFixed(2))}</h2>
-              <h3>Muito BASED 🗿</h3>
+            <div className="upgrade__container" style={containerStyle(nivelUpgrade2 < 10)} onClick={Upgrade3}>
+              <h2>{nivelUpgrade2 >= 1 ? `+${parseFloat(cpsUpgrade3.toFixed(2))} P/s` : "???"}</h2>
+              <h3>{nivelUpgrade2 >= 1 ? "Muito BASED 🗿" : "???????????"}</h3>
               <h4 style={custoStyle(custoUpgrade3)}>{nivelUpgrade2 >= 10 ? `${custoUpgrade3}$` : "🔒"}</h4>
               <h5>Nv.{nivelUpgrade3}</h5>
+            </div>
+            <div className="upgrade__container" style={containerStyle(nivelUpgrade3 < 10)} onClick={Upgrade4}>
+              <h2>{nivelUpgrade3 >= 1 ? `+${parseFloat(cpsUpgrade4.toFixed(2))} P/s` : "???"}</h2>
+              <h3>{nivelUpgrade3 >= 1 ? "Academia Avenida 💪" : "???????????"}</h3>
+              <h4 style={custoStyle(custoUpgrade4)}>{nivelUpgrade3 >= 10 ? `${custoUpgrade4}$` : "🔒"}</h4>
+              <h5>Nv.{nivelUpgrade4}</h5>
             </div>
           </div>
         </div>

@@ -11,9 +11,8 @@ html, body {
 
 header {
   background-color: rgb(31, 31, 31);
-  height: 8vh;
+  height: 9vh;
   width: 100%;
-  position: fixed;
   top: 0;
 }
 
@@ -23,7 +22,7 @@ header h1 {
   font-size: 40px;
   font-weight: 600;
   text-align: center;
-  padding-top: 2vh;
+  padding-top: 3vh;
   text-shadow: 
   -1px -1px 0px black,   
   1px -1px 0px black,    
@@ -40,16 +39,15 @@ header h1 span {
 }
 
 .lineheader {
-  background-color: #000000; /* Define a cor cinza */
-  height: 1vh; /* Define a altura da linha */
-  width: 100%; /* Garante que a linha ocupe toda a largura da página */
-  position: fixed; /* Ajusta o posicionamento relativo para garantir que ela fique no topo do header */
-  top: 8vh; /* Coloca a linha logo abaixo do header, ajustando conforme necessário */
+  background-color: #000000;
+  height: 1vh;
+  width: 100%;
+  top: 8vh;
 }
 
 .container {
   display: flex;
-  height: 100vh;
+  height: 90vh;
 }
 
 .left-side, .right-side {
@@ -65,11 +63,39 @@ header h1 span {
 }
 
 .right-side {
-  background-color: #ff4444; /* Cor de fundo para visualização */
+  background-color: #ff3c3c;
+  overflow: auto;
+  overflow-x: hidden; /* Oculta a rolagem vertical */
 }
 
 .edecio {
   text-align: center;
+}
+
+.displaybalance {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  margin-bottom: 2vh;
+  color: rgb(255, 198, 100);
+  text-shadow: 
+  -2px -2px 0px black,   
+  2px -2px 0px black,    
+  -2px 2px 0px black,    
+  2px 2px 0px black,     
+  0px -2px 0px black,    
+  0px 2px 0px black,     
+  -2px 0px 0px black,    
+  2px 0px 0px black;
+}
+
+.displaybalance img {
+  margin-left: 10px;
+  height: 48px;
+  width: 48px;
 }
 
 .displaycps {
@@ -117,7 +143,7 @@ header h1 span {
 
 
 .edecio img {
-  margin-bottom: 5vh;
+  margin-bottom: 12vh;
   height: 100%;
   width: 450px;
   cursor: pointer;
@@ -137,6 +163,11 @@ header h1 span {
 .upgrades {
   text-align: center;
   font-family: "Poppins", sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15vh;
+  margin-bottom: 5vh;
 }
 
 .upgrades h1 {
@@ -144,6 +175,9 @@ header h1 span {
   font-size: 5rem; /* Ajuste o tamanho conforme necessário */
   font-weight: bold;
   color: #fff;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 5vh;
   text-shadow: 
   -2px -2px 0px black,   
   2px -2px 0px black,    
@@ -157,8 +191,10 @@ header h1 span {
 
 .upgrade__container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   text-align: left;
-  margin-top: 5vh;
   color: #fff;
   font-size: 30px;
   text-shadow: 
@@ -175,17 +211,17 @@ header h1 span {
 .upgrade__container h2 {
   font-weight: 600;
   margin: 0;
-  padding: 10px;
+  padding: 20px;
   letter-spacing: 2px;
   color: white;
-  background-color: rgb(98, 216, 255);
+  background-color: #006eff;
   border-radius: 10px 0 0 10px;
 }
 
 .upgrade__container h3 {
   font-weight: 600;
   margin: 0;
-  padding: 10px;
+  padding: 20px;
   letter-spacing: 2px;
   color: white;
   background-color: wheat;
@@ -194,28 +230,28 @@ header h1 span {
 .upgrade__container h4 {
   font-weight: 600;
   margin: 0;
-  padding: 10px;
+  padding: 20px;
   letter-spacing: 2px;
   color: white;
-  background-color: lightgreen;
+  background-color: #6cfd6c;
 }
 
 .upgrade__container h5 {
   margin: 0;
-  padding: 10px;
+  padding: 20px;
   letter-spacing: 2px;
   color: white;
-  background-color: rgb(98, 216, 255);
+  background-color: #006eff;
   border-radius: 0 10px 10px 0;
 }
 
 .upgrade__container:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   cursor: pointer;  
 }
 
 .upgrade__container:active {
-  transform: scale(1.20);
+  transform: scale(0.97);
 }
 
 .notificacao {

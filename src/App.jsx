@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import './App.css'
-import './reset.css'
+import './css/App.css'
+import './css/reset.css'
 
 // Assets //
 
@@ -20,6 +20,7 @@ function App() {
   const [cliques, setCliques] = useState(0)
   const [multiplicador, setMultiplicador] = useState(1)
   const [cliquesPorSegundo, setCliquesPorSegundo] = useState(0)
+  const [worker, setWorker] = useState(null);
   
   // Assets //
   
@@ -50,14 +51,14 @@ function App() {
 // Multiplicadores //
 
 const [cpsUpgrade1, setCpsUpgrade1] = useState(0.1)
-const [cpsUpgrade2, setCpsUpgrade2] = useState(0.1)
+const [cpsUpgrade2, setCpsUpgrade2] = useState(0.25)
 const [cpsUpgrade3, setCpsUpgrade3] = useState(0.75)
 const [cpsUpgrade4, setCpsUpgrade4] = useState(3)
-const [cpsUpgrade5, setCpsUpgrade5] = useState(2.5)
+const [cpsUpgrade5, setCpsUpgrade5] = useState(2)
 const [cpsUpgrade6, setCpsUpgrade6] = useState(30)
 const [cpsUpgrade7, setCpsUpgrade7] = useState(100)
 
-// QL //o
+// QoL //
 
 const displayCliques = cliques >= 1000 ? formatNumber(Math.floor(cliques)) : parseFloat(cliques.toFixed(0));
 
@@ -82,6 +83,99 @@ function formatNumber(value) {
     return value.toString(); // Exemplo: 999
   }
 }
+
+// Save System //
+
+function saveProgress() {
+  const progress = {
+    cliques,
+    multiplicador,
+    cliquesPorSegundo,
+    //
+    edecio,
+    wallpaper,
+    //
+    custoUpgrade1,
+    custoUpgrade2,
+    custoUpgrade3,
+    custoUpgrade4,
+    custoUpgrade5,
+    custoUpgrade6,
+    custoUpgrade7,
+    //
+    nivelUpgrade1,
+    nivelUpgrade2,
+    nivelUpgrade3,
+    nivelUpgrade4,
+    nivelUpgrade5,
+    nivelUpgrade6,
+    nivelUpgrade7,
+    //
+    cpsUpgrade1,
+    cpsUpgrade2,
+    cpsUpgrade3,
+    cpsUpgrade4,
+    cpsUpgrade5,
+    cpsUpgrade6,
+    cpsUpgrade7,
+    //
+  };
+
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(progress));
+  const downloadAnchorNode = document.createElement('a');
+  downloadAnchorNode.setAttribute("href", dataStr);
+  downloadAnchorNode.setAttribute("download", "edecio_clicker_save.json");
+  document.body.appendChild(downloadAnchorNode); // necessário para o Firefox
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
+}
+
+function loadProgress(event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+  
+  reader.onload = (e) => {
+    const progress = JSON.parse(e.target.result);
+    
+    // Atualizar os estados com os valores do save
+    setCliques(progress.cliques);
+    setMultiplicador(progress.multiplicador);
+    setCliquesPorSegundo(progress.cliquesPorSegundo);
+    //
+    setEdecio(progress.edecio);
+    setWallpaper(progress.wallpaper);
+    //
+    setCustoUpgrade(progress.custoUpgrade1);
+    setCustoUpgrade2(progress.custoUpgrade2);
+    setCustoUpgrade3(progress.custoUpgrade3);
+    setCustoUpgrade4(progress.custoUpgrade4);
+    setCustoUpgrade5(progress.custoUpgrade5);
+    setCustoUpgrade6(progress.custoUpgrade6);
+    setCustoUpgrade7(progress.custoUpgrade7);
+    //
+    setNivelUpgrade1(progress.nivelUpgrade1);
+    setNivelUpgrade2(progress.nivelUpgrade2);
+    setNivelUpgrade3(progress.nivelUpgrade3);
+    setNivelUpgrade4(progress.nivelUpgrade4);
+    setNivelUpgrade5(progress.nivelUpgrade5);
+    setNivelUpgrade6(progress.nivelUpgrade6);
+    setNivelUpgrade7(progress.nivelUpgrade7);
+    //
+    setCpsUpgrade1(progress.cpsUpgrade1) 
+    setCpsUpgrade2(progress.cpsUpgrade2) 
+    setCpsUpgrade3(progress.cpsUpgrade3) 
+    setCpsUpgrade4(progress.cpsUpgrade4) 
+    setCpsUpgrade5(progress.cpsUpgrade5) 
+    setCpsUpgrade6(progress.cpsUpgrade6) 
+    setCpsUpgrade7(progress.cpsUpgrade7) 
+  };
+
+  reader.readAsText(file);
+}
+
+const importSaveClick = () => {
+  document.getElementById("fileInput").click();
+};
 
 // Funçoes do Jogo //
 
@@ -224,17 +318,44 @@ function formatNumber(value) {
   }
 
   useEffect(() => {
-    const intervalo = setInterval(() => {
-      setCliques(prevCliques => prevCliques + (cliquesPorSegundo / 10))
-    }, 100)
+    const myWorker = new Worker(new URL('./worker.js', import.meta.url));
+    setWorker(myWorker);
 
-    return () => clearInterval(intervalo)
-  }, [cliquesPorSegundo])
+    myWorker.onmessage = (event) => {
+      if (event.data.type === 'UPDATE_CLIQUES') {
+        setCliques(event.data.value);
+      }
+    };
+
+    // Configura o Web Worker com os valores iniciais e inicia a contagem
+    myWorker.postMessage({ type: 'SET_CLIQUES', value: cliques });
+    myWorker.postMessage({ type: 'SET_CLIQUES_POR_SEGUNDO', value: cliquesPorSegundo });
+    myWorker.postMessage({ type: 'START' });
+
+    return () => {
+      myWorker.terminate();
+    };
+  }, [cliquesPorSegundo]);
+
+  useEffect(() => {
+    // Atualize o Web Worker com o novo valor de cliques quando ele mudar
+    if (worker) {
+      worker.postMessage({ type: 'SET_CLIQUES', value: cliques });
+    }
+  }, [cliques, worker]);
 
   return (  
     <>
     <header>
+      <div className="nav__container">
       <h1>Edécio <span>Clicker</span></h1>
+      <h2 onClick={saveProgress}>Exportar Save</h2>
+      <h2 className='import__button' onClick={importSaveClick}>Importar Save<input 
+        id="fileInput"
+        type="file" 
+        onChange={loadProgress}
+    /></h2>
+      </div>
     </header>
     <div className="lineheader"></div>
       <div className="container">
@@ -242,7 +363,7 @@ function formatNumber(value) {
           <div className="game__container">
             <div className="displaybalance">
             <h1>{displayCliques}</h1>
-            <img src={edeciocoin} alt="" />
+            <img src={edeciocoin} alt="" draggable="false" />
             </div>
             <div className="displaycps">
           <h2 className="Cps">{parseFloat((multiplicador).toFixed(2))}$ por Clique</h2>
@@ -281,7 +402,7 @@ function formatNumber(value) {
               <h5>Nv.{nivelUpgrade4}</h5>
             </div>
             <div className="upgrade__container" style={containerStyle(nivelUpgrade4 < 10)} onClick={Upgrade5}>
-              <h2>{nivelUpgrade4 >= 1 ? `+${parseFloat(cpsUpgrade5.toFixed(2))} P/s` : "???"}</h2>
+              <h2>{nivelUpgrade4 >= 1 ? `+${parseFloat(cpsUpgrade5.toFixed(2))}` : "???"}</h2>
               <h3>{nivelUpgrade4 >= 1 ? "Projetinho 🗿" : "???????????"}</h3>
               <h4 style={custoStyle(custoUpgrade5)}>{nivelUpgrade4 >= 10 ? `$${formatNumber(custoUpgrade5)}` : "🔒"}</h4>
               <h5>Nv.{nivelUpgrade5}</h5>

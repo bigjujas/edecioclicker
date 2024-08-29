@@ -10,6 +10,8 @@ html, body {
 }
 
 header {
+  display: flex;
+  justify-content: center;
   background-color: rgb(31, 31, 31);
   height: 9vh;
   width: 100%;
@@ -22,7 +24,6 @@ header h1 {
   font-size: 40px;
   font-weight: 600;
   text-align: center;
-  padding-top: 3vh;
   text-shadow: 
   -1px -1px 0px black,   
   1px -1px 0px black,    
@@ -36,6 +37,48 @@ header h1 {
 
 header h1 span {
   color:rgb(85, 158, 255);
+}
+
+.nav__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+header h2 {
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 30px;
+  text-shadow: 
+  -1px -1px 0px black,   
+  1px -1px 0px black,    
+  -1px 1px 0px black,    
+  1px 1px 0px black,     
+  0px -1px 0px black,    
+  0px 1px 0px black,     
+  -1px 0px 0px black,    
+  1px 0px 0px black;
+}
+
+header h2:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  color: #0487E2;
+  border: #0487E2 solid 1px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.import__button input{
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .lineheader {
@@ -153,11 +196,13 @@ header h1 span {
 }
 
 .edecio img:hover {
-  transform: scale(1.01);
+  transform: scale(1.02);
+  transition: all 0.1s ease;
 }
 
 .edecio img:active {
   transform: scale(0.90);
+  transition: all 0
 }
 
 .upgrades {
@@ -197,6 +242,7 @@ header h1 span {
   text-align: left;
   color: #fff;
   font-size: 30px;
+  transition: all 0.3s ease;
   text-shadow: 
   -1px -1px 0px black,   
   1px -1px 0px black,    

@@ -53,11 +53,11 @@ const [cpsUpgrade1, setCpsUpgrade1] = useState(0.1)
 const [cpsUpgrade2, setCpsUpgrade2] = useState(0.1)
 const [cpsUpgrade3, setCpsUpgrade3] = useState(0.75)
 const [cpsUpgrade4, setCpsUpgrade4] = useState(3)
-const [cpsUpgrade5, setCpsUpgrade5] = useState(10)
+const [cpsUpgrade5, setCpsUpgrade5] = useState(2.5)
 const [cpsUpgrade6, setCpsUpgrade6] = useState(30)
 const [cpsUpgrade7, setCpsUpgrade7] = useState(100)
 
-// QoL //
+// QL //o
 
 const displayCliques = cliques >= 1000 ? formatNumber(Math.floor(cliques)) : parseFloat(cliques.toFixed(0));
 
@@ -185,7 +185,7 @@ function formatNumber(value) {
         }
         return novoNivel;
     });
-      setCliquesPorSegundo(prevCliquesPorSegundo => prevCliquesPorSegundo + cpsUpgrade5)
+      setMultiplicador(prevMultiplicador => prevMultiplicador + cpsUpgrade5)
       setCustoUpgrade5(prevCusto => Math.floor(prevCusto * 1.35))
       setEdecio (chadEdecio)
     }

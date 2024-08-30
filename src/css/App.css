@@ -9,13 +9,33 @@ html, body {
   -webkit-user-select: none;
 }
 
-header {
-  display: flex;
-  justify-content: center;
-  background-color: rgb(31, 31, 31);
-  height: 9vh;
+::-webkit-scrollbar {
+  width: 10px; /* Largura da barra de rolagem vertical */
+  height: 12px; /* Altura da barra de rolagem horizontal */
+}
+
+/* Customiza a trilha da barra de rolagem (a parte que fica atrás do "polegar") */
+::-webkit-scrollbar-track {
+  background: #1f1f1f; /* Cor de fundo da trilha */
+}
+
+/* Customiza o "polegar" da barra de rolagem (a parte que você arrasta) */
+::-webkit-scrollbar-thumb {
+  background-color: #000000; /* Cor do polegar */
+  border-radius: 10px; /* Bordas arredondadas no polegar */
+  border: 3px solid #0487E2; /* Adiciona uma borda ao polegar para um efeito de "almofada" */
+}
+
+.header {
+  background-color: #1f1f1f;
+  box-shadow: inset 0 -3px 0 0 #0a0a0a; /* Borda interna de 5px com cor preta */
+  height: 10vh;
   width: 100%;
-  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5vh;
+  box-sizing: border-box;
 }
 
 header h1 {
@@ -24,6 +44,8 @@ header h1 {
   font-size: 40px;
   font-weight: 600;
   text-align: center;
+  justify-content: center;
+  padding-left: 17.5vh;
   text-shadow: 
   -1px -1px 0px black,   
   1px -1px 0px black,    
@@ -36,10 +58,37 @@ header h1 {
 }
 
 header h1 span {
-  color:rgb(85, 158, 255);
+  color:#559eff;
 }
 
-.nav__container {
+header h3 {
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  text-shadow: 
+  -1px -1px 0px black,   
+  1px -1px 0px black,    
+  -1px 1px 0px black,    
+  1px 1px 0px black,     
+  0px -1px 0px black,    
+  0px 1px 0px black,     
+  -1px 0px 0px black,    
+  1px 0px 0px black;
+}
+
+header h3:hover {
+  font-size: 18px;
+  transform: scale(1.05);
+  color: #0487E2;
+  border: #0487E2 solid 1px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.save__container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,6 +116,7 @@ header h2 {
 
 header h2:hover {
   cursor: pointer;
+  font-size: 18px;
   transform: scale(1.05);
   color: #0487E2;
   border: #0487E2 solid 1px;
@@ -81,34 +131,29 @@ header h2:hover {
   height: 0;
 }
 
-.lineheader {
-  background-color: #000000;
-  height: 1vh;
-  width: 100%;
-  top: 8vh;
-}
-
 .container {
   display: flex;
   height: 90vh;
+  width: 100%;
 }
 
-.left-side, .right-side {
+.left-side {
+  background-color: #0487E2; /* Cor de fundo para visualização */
   display: flex;
   align-items: center;
   justify-content: center;
   width: 50%;
   box-sizing: border-box;
-}
-
-.left-side {
-  background-color: #0487E2; /* Cor de fundo para visualização */
+  border-right: rgb(0, 0, 0) 5px solid;
 }
 
 .right-side {
-  background-color: #ff3c3c;
+  background-image: url(/src/assets/wallpaper__upgrades.jpg);
+  display: flex;
+  flex-direction: column;
+  width: 50%;
   overflow: auto;
-  overflow-x: hidden; /* Oculta a rolagem vertical */
+  overflow-x: hidden;
 }
 
 .edecio {
@@ -121,6 +166,7 @@ header h2:hover {
   justify-content: center;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
+  letter-spacing: 2px;
   font-size: 50px;
   margin-bottom: 2vh;
   color: rgb(255, 198, 100);
@@ -153,6 +199,7 @@ header h2:hover {
   font-size: 20px;
   top: -10vh;
   color: #fff;
+  letter-spacing: 1px;
   margin-right: 3vh;
   margin-left: 3vh;
   margin-bottom: 2vh;
@@ -206,23 +253,21 @@ header h2:hover {
 }
 
 .upgrades {
-  text-align: center;
   font-family: "Poppins", sans-serif;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-top: 15vh;
-  margin-bottom: 5vh;
+  flex: 1;
 }
 
 .upgrades h1 {
-  font-family: "Poppins", sans-serif;
+  background-color: #3a3a3a;
+  border-bottom: #0487E2 solid 10px;
+  margin: 0;
+  padding: 30px;
+  padding-top: 4vh;
   font-size: 5rem; /* Ajuste o tamanho conforme necessário */
   font-weight: bold;
   color: #fff;
   text-align: center;
   justify-content: center;
-  margin-bottom: 5vh;
   text-shadow: 
   -2px -2px 0px black,   
   2px -2px 0px black,    
@@ -235,14 +280,14 @@ header h2:hover {
 }
 
 .upgrade__container {
+  margin: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  height: 100%;
-  text-align: left;
+  text-align: center;
   color: #fff;
-  font-size: 30px;
   transition: all 0.3s ease;
+  border: black 2px solid;
   text-shadow: 
   -1px -1px 0px black,   
   1px -1px 0px black,    
@@ -254,41 +299,45 @@ header h2:hover {
   1px 0px 0px black;
 }
 
-.upgrade__container h2 {
-  font-weight: 600;
+.upgrade__container h2,
+.upgrade__container h3,
+.upgrade__container h4,
+.upgrade__container h5 {
+  font-size: 20px;
   margin: 0;
   padding: 20px;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: black 1px solid;
+}
+
+.upgrade__container h2 {
+  font-weight: 600;
   letter-spacing: 2px;
   color: white;
   background-color: #006eff;
-  border-radius: 10px 0 0 10px;
 }
 
 .upgrade__container h3 {
   font-weight: 600;
-  margin: 0;
-  padding: 20px;
   letter-spacing: 2px;
   color: white;
   background-color: wheat;
+  flex-grow: 2; /* h3 ocupará mais espaço */
 }
 
 .upgrade__container h4 {
   font-weight: 600;
-  margin: 0;
-  padding: 20px;
   letter-spacing: 2px;
   color: white;
   background-color: #6cfd6c;
 }
 
 .upgrade__container h5 {
-  margin: 0;
-  padding: 20px;
   letter-spacing: 2px;
   color: white;
   background-color: #006eff;
-  border-radius: 0 10px 10px 0;
 }
 
 .upgrade__container:hover {
@@ -297,7 +346,11 @@ header h2:hover {
 }
 
 .upgrade__container:active {
-  transform: scale(0.97);
+  transform: scale(0.95);
+}
+
+.backgroundCapitulo2 {
+  background-color: orange !important;
 }
 
 .notificacao {

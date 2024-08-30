@@ -5,14 +5,21 @@ import './css/reset.css'
 // Assets //
 
 import edeciocoin from './assets/edeciocoin.png'
+///
 import defaultEdecio from './assets/edecio.jpg'
 import coffeeEdecio from './assets/coffeeEdecio.jpg'
 import programmerEdecio from './assets/programmerEdecio.jpg'
 import chadEdecio from './assets/chadEdecio.jpg'
 import criaEdecio from './assets/criaEdecio.jpg'
+import prisionerEdecio from './assets/prisionerEdecio.jpg'
+import minecraftEdecio from './assets/minecraftEdecio.jpg'
+///
 import wallpaper1 from './assets/mainWallpaper.jpg'
 import wallpaper2 from './assets/mainWallpaper2.jpg'
 import wallpaper3 from './assets/mainWallpaper3.jpg'
+import wallpaper4 from './assets/mainWallpaper4.jpg'
+import wallpaper5 from './assets/mainWallpaper5.jpg'
+import wallpaper6 from './assets/mainWallpaper6.jpg'
 
 let notificationId = 0; // Let para notificação de Cps na Tela
 
@@ -37,6 +44,10 @@ function App() {
   const [custoUpgrade5, setCustoUpgrade5] = useState(1500)
   const [custoUpgrade6, setCustoUpgrade6] = useState(8000)
   const [custoUpgrade7, setCustoUpgrade7] = useState(50000)
+  const [custoUpgrade8, setCustoUpgrade8] = useState(500000)
+  const [custoUpgrade9, setCustoUpgrade9] = useState(5000000)
+  const [custoUpgrade10, setCustoUpgrade10] = useState(20000000)
+  const [custoUpgrade11, setCustoUpgrade11] = useState(35000000)
 
 // Niveis //
 
@@ -47,6 +58,10 @@ function App() {
   const [nivelUpgrade5, setNivelUpgrade5] = useState(0)
   const [nivelUpgrade6, setNivelUpgrade6] = useState(0)
   const [nivelUpgrade7, setNivelUpgrade7] = useState(0)
+  const [nivelUpgrade8, setNivelUpgrade8] = useState(0)
+  const [nivelUpgrade9, setNivelUpgrade9] = useState(0)
+  const [nivelUpgrade10, setNivelUpgrade10] = useState(0)
+  const [nivelUpgrade11, setNivelUpgrade11] = useState(0)
 
 // Multiplicadores //
 
@@ -57,6 +72,10 @@ const [cpsUpgrade4, setCpsUpgrade4] = useState(3)
 const [cpsUpgrade5, setCpsUpgrade5] = useState(2)
 const [cpsUpgrade6, setCpsUpgrade6] = useState(30)
 const [cpsUpgrade7, setCpsUpgrade7] = useState(100)
+const [cpsUpgrade8, setCpsUpgrade8] = useState(250)
+const [cpsUpgrade9, setCpsUpgrade9] = useState(750)
+const [cpsUpgrade10, setCpsUpgrade10] = useState(100)
+const [cpsUpgrade11, setCpsUpgrade11] = useState(2500)
 
 // QoL //
 
@@ -71,16 +90,18 @@ const displayCliques = cliques >= 1000 ? formatNumber(Math.floor(cliques)) : par
 
 const containerStyle = (isLocked) => ({
   cursor: isLocked ? 'not-allowed' : 'pointer',
-  filter: isLocked ? 'brightness(0.5)' : 'brightness(1)'
+  filter: isLocked ? 'brightness(0.5) saturate(0.0)' : 'brightness(1)'
 });
 
 function formatNumber(value) {
-  if (value >= 1000000) {
-    return `${(value / 1000000).toFixed(2)}M`; // Exemplo: 1.2M
+  if (value >= 1000000000) {
+    return `${(value / 1000000000).toFixed(2)}B`; // Exemplo: 1.2B
+  } else if (value >= 1000000) { 
+     return `${(value / 1000000).toFixed(2)}M`; // Exemplo: 1.2M
   } else if (value >= 10000) {
-    return `${(value / 1000).toFixed(2)}k`; // Exemplo: 1.2k
+     return `${(value / 1000).toFixed(2)}k`; // Exemplo: 1.2k
   } else {
-    return value.toString(); // Exemplo: 999
+     return parseFloat((value).toFixed(2)); // Exemplo: 999
   }
 }
 
@@ -102,6 +123,10 @@ function saveProgress() {
     custoUpgrade5,
     custoUpgrade6,
     custoUpgrade7,
+    custoUpgrade8,
+    custoUpgrade9,
+    custoUpgrade10,
+    custoUpgrade11,
     //
     nivelUpgrade1,
     nivelUpgrade2,
@@ -110,6 +135,10 @@ function saveProgress() {
     nivelUpgrade5,
     nivelUpgrade6,
     nivelUpgrade7,
+    nivelUpgrade8,
+    nivelUpgrade9,
+    nivelUpgrade10,
+    nivelUpgrade11,
     //
     cpsUpgrade1,
     cpsUpgrade2,
@@ -118,6 +147,10 @@ function saveProgress() {
     cpsUpgrade5,
     cpsUpgrade6,
     cpsUpgrade7,
+    cpsUpgrade8,
+    cpsUpgrade9,
+    cpsUpgrade10,
+    cpsUpgrade11,
     //
   };
 
@@ -152,6 +185,10 @@ function loadProgress(event) {
     setCustoUpgrade5(progress.custoUpgrade5);
     setCustoUpgrade6(progress.custoUpgrade6);
     setCustoUpgrade7(progress.custoUpgrade7);
+    setCustoUpgrade8(progress.custoUpgrade8);
+    setCustoUpgrade9(progress.custoUpgrade9);
+    setCustoUpgrade10(progress.custoUpgrade10);
+    setCustoUpgrade11(progress.custoUpgrade11);
     //
     setNivelUpgrade1(progress.nivelUpgrade1);
     setNivelUpgrade2(progress.nivelUpgrade2);
@@ -160,6 +197,10 @@ function loadProgress(event) {
     setNivelUpgrade5(progress.nivelUpgrade5);
     setNivelUpgrade6(progress.nivelUpgrade6);
     setNivelUpgrade7(progress.nivelUpgrade7);
+    setNivelUpgrade8(progress.nivelUpgrade8);
+    setNivelUpgrade9(progress.nivelUpgrade9);
+    setNivelUpgrade10(progress.nivelUpgrade10);
+    setNivelUpgrade11(progress.nivelUpgrade11);
     //
     setCpsUpgrade1(progress.cpsUpgrade1) 
     setCpsUpgrade2(progress.cpsUpgrade2) 
@@ -168,6 +209,10 @@ function loadProgress(event) {
     setCpsUpgrade5(progress.cpsUpgrade5) 
     setCpsUpgrade6(progress.cpsUpgrade6) 
     setCpsUpgrade7(progress.cpsUpgrade7) 
+    setCpsUpgrade8(progress.cpsUpgrade8) 
+    setCpsUpgrade9(progress.cpsUpgrade9) 
+    setCpsUpgrade10(progress.cpsUpgrade10) 
+    setCpsUpgrade11(progress.cpsUpgrade11) 
   };
 
   reader.readAsText(file);
@@ -192,7 +237,7 @@ const importSaveClick = () => {
       ...prevNotificacoes,
       {
         id: novoId,
-        texto: nivelUpgrade2 >= 1 ? `+${parseFloat(multiplicador).toFixed(1)}👍` : `+${multiplicador}`,
+        texto: nivelUpgrade2 >= 1 ? `+${formatNumber(multiplicador)}👍` : `+${formatNumber(multiplicador)}`,
         top: clientY,
         left: clientX
       }
@@ -317,6 +362,71 @@ const importSaveClick = () => {
     }
   }
 
+  function Upgrade8() {
+    if (cliques >= custoUpgrade8 && nivelUpgrade7 >=10) {
+      setCliques(prevCliques => prevCliques - custoUpgrade8)
+      setNivelUpgrade8(prevNivel => {
+        const novoNivel = prevNivel + 1;
+        if (novoNivel % 10 === 0) {
+            setCpsUpgrade8(cpsUpgrade8 * 2);
+        }
+        return novoNivel;
+    });
+      setCliquesPorSegundo(prevCliquesPorSegundo => prevCliquesPorSegundo + cpsUpgrade8)
+      setCustoUpgrade8(prevCusto => Math.floor(prevCusto * 1.35))
+      setEdecio (prisionerEdecio)
+      setWallpaper (wallpaper4)
+    }
+  }
+
+  function Upgrade9() {
+    if (cliques >= custoUpgrade9 && nivelUpgrade8 >=10) {
+      setCliques(prevCliques => prevCliques - custoUpgrade9)
+      setNivelUpgrade9(prevNivel => {
+        const novoNivel = prevNivel + 1;
+        if (novoNivel % 10 === 0) {
+            setCpsUpgrade9(cpsUpgrade9 * 2);
+        }
+        return novoNivel;
+    });
+      setCliquesPorSegundo(prevCliquesPorSegundo => prevCliquesPorSegundo + cpsUpgrade9)
+      setCustoUpgrade9(prevCusto => Math.floor(prevCusto * 1.35))
+      setWallpaper (wallpaper5)
+    }
+  }
+
+  function Upgrade10() {
+    if (cliques >= custoUpgrade10 && nivelUpgrade9 >=10) {
+      setCliques(prevCliques => prevCliques - custoUpgrade10)
+      setNivelUpgrade10(prevNivel => {
+        const novoNivel = prevNivel + 1;
+        if (novoNivel % 10 === 0) {
+            setCpsUpgrade10(cpsUpgrade10 * 2);
+        }
+        return novoNivel;
+    });
+    setMultiplicador(prevMultiplicador => prevMultiplicador + cpsUpgrade10)
+      setCustoUpgrade10(prevCusto => Math.floor(prevCusto * 1.35))
+      setEdecio (minecraftEdecio)
+    }
+  }
+
+  function Upgrade11() {
+    if (cliques >= custoUpgrade11 && nivelUpgrade10 >=10) {
+      setCliques(prevCliques => prevCliques - custoUpgrade11)
+      setNivelUpgrade11(prevNivel => {
+        const novoNivel = prevNivel + 1;
+        if (novoNivel % 10 === 0) {
+            setCpsUpgrade11(cpsUpgrade11 * 2);
+        }
+        return novoNivel;
+    });
+      setCliquesPorSegundo(prevCliquesPorSegundo => prevCliquesPorSegundo + cpsUpgrade11)
+      setCustoUpgrade11(prevCusto => Math.floor(prevCusto * 1.35))
+      setWallpaper (wallpaper6)
+    }
+  }
+
   useEffect(() => {
     const myWorker = new Worker(new URL('./worker.js', import.meta.url));
     setWorker(myWorker);
@@ -346,9 +456,10 @@ const importSaveClick = () => {
 
   return (  
     <>
-    <header>
-      <div className="nav__container">
+    <header className='header'>
+      <h3>Versão: Beta 1.0</h3>
       <h1>Edécio <span>Clicker</span></h1>
+      <div className="save__container">
       <h2 onClick={saveProgress}>Exportar Save</h2>
       <h2 className='import__button' onClick={importSaveClick}>Importar Save<input 
         id="fileInput"
@@ -357,17 +468,16 @@ const importSaveClick = () => {
     /></h2>
       </div>
     </header>
-    <div className="lineheader"></div>
       <div className="container">
       <div className="left-side" style={{  backgroundImage: `url(${wallpaper})`,}}>
           <div className="game__container">
             <div className="displaybalance">
-            <h1>{displayCliques}</h1>
+            <h1>${displayCliques}</h1>
             <img src={edeciocoin} alt="" draggable="false" />
             </div>
             <div className="displaycps">
-          <h2 className="Cps">{parseFloat((multiplicador).toFixed(2))}$ por Clique</h2>
-          <h2 className="Cps">{parseFloat((cliquesPorSegundo).toFixed(2))}$ por Segundo</h2>
+          <h2 className="Cps">${formatNumber(multiplicador)} por Clique</h2>
+          <h2 className="Cps">${formatNumber(cliquesPorSegundo)} por Segundo</h2>
             </div>
           <div className="edecio">
             <img src={edecio} alt="" onClick={Clique} draggable="false" />
@@ -376,7 +486,7 @@ const importSaveClick = () => {
         </div>
         <div className="right-side">
           <div className="upgrades">
-            <h1>Upgrades💸</h1>
+            <h1>Upgrades 💸</h1>
             <div className="upgrade__container" onClick={Upgrade1}>
               <h2>+{parseFloat(cpsUpgrade1.toFixed(2))} P/s</h2>
               <h3>Café Quentinho ☕</h3>
@@ -419,8 +529,32 @@ const importSaveClick = () => {
               <h4 style={custoStyle(custoUpgrade7)}>{nivelUpgrade6 >= 10 ? `$${formatNumber(custoUpgrade7)}` : "🔒"}</h4>
               <h5>Nv.{nivelUpgrade7}</h5>
             </div>
-          </div>
-        </div>
+            <div className="upgrade__container" style={containerStyle(nivelUpgrade7 < 10)} onClick={Upgrade8}>
+              <h2>{nivelUpgrade7 >= 1 ? `+${parseFloat(cpsUpgrade8.toFixed(2))} P/s` : "???"}</h2>
+              <h3>{nivelUpgrade7 >= 1 ? "Prisão ⛓️" : "???????????"}</h3>
+              <h4 style={custoStyle(custoUpgrade8)}>{nivelUpgrade7 >= 10 ? `$${formatNumber(custoUpgrade8)}` : "🔒"}</h4>
+              <h5>Nv.{nivelUpgrade8}</h5>
+            </div>
+            <div className="upgrade__container" style={containerStyle(nivelUpgrade8 < 10)} onClick={Upgrade9}>
+              <h2>{nivelUpgrade8 >= 1 ? `+${parseFloat(cpsUpgrade9.toFixed(2))} P/s` : "???"}</h2>
+              <h3 className='backgroundCapitulo2'>{nivelUpgrade8 >= 1 ? "Nether 🕳️" : "???????????"}</h3>
+              <h4 style={custoStyle(custoUpgrade9)}>{nivelUpgrade8 >= 10 ? `$${formatNumber(custoUpgrade9)}` : "🔒"}</h4>
+              <h5>Nv.{nivelUpgrade9}</h5>
+            </div>
+            <div className="upgrade__container" style={containerStyle(nivelUpgrade9 < 10)} onClick={Upgrade10}>
+              <h2>{nivelUpgrade9 >= 1 ? `+${parseFloat(cpsUpgrade10.toFixed(2))}` : "???"}</h2>
+              <h3 className='backgroundCapitulo2'>{nivelUpgrade9 >= 1 ? "Full Dima 💎" : "???????????"}</h3>
+              <h4 style={custoStyle(custoUpgrade10)}>{nivelUpgrade9 >= 10 ? `$${formatNumber(custoUpgrade10)}` : "🔒"}</h4>
+              <h5>Nv.{nivelUpgrade10}</h5>
+            </div>
+            <div className="upgrade__container" style={containerStyle(nivelUpgrade10 < 10)} onClick={Upgrade11}>
+              <h2>{nivelUpgrade10 >= 1 ? `+${parseFloat(cpsUpgrade11.toFixed(2))} P/s` : "???"}</h2>
+              <h3 className='backgroundCapitulo2'>{nivelUpgrade10 >= 1 ? "Casa Automatica 🏠" : "???????????"}</h3>
+              <h4 style={custoStyle(custoUpgrade11)}>{nivelUpgrade10 >= 10 ? `$${formatNumber(custoUpgrade11)}` : "🔒"}</h4>
+              <h5>Nv.{nivelUpgrade11}</h5>
+            </div>
+         </div>
+      </div>
       </div>
       {notificacoes.map(notificacao => (
         <div 

@@ -644,7 +644,7 @@ function App() {
                   <h5>Nivel de Prestigio: {nivelPrestigio}</h5>
                 </div>
                 <div className="upgrade__container" style={containerStyle(moedaPrestigio < 1)} onClick={upgradeMultiplicadorPrestigio}>
-                  <h2>+0.20%</h2>
+                  <h2>x0.20%</h2>
                   <h3 className='backgroundPrestigio'>Multiplicador 🎱</h3>
                   <h4>⚡️1</h4>
                   <h5>Nv.{nivelMultiplicadorPrestigio}</h5>

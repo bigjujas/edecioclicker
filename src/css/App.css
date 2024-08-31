@@ -257,15 +257,22 @@ header h2:hover {
   flex: 1;
 }
 
+.changeTab__container {
+  display: flex;
+}
+
 .upgrades h1 {
+  flex: 1;
   background-color: #3a3a3a;
-  border-bottom: #0487E2 solid 10px;
+  border-bottom: #000000 solid 5px;
+  border-right: #000000 solid 2.5px;
   margin: 0;
   padding: 30px;
   padding-top: 4vh;
-  font-size: 5rem; /* Ajuste o tamanho conforme necessário */
+  font-size: 3rem; /* Ajuste o tamanho conforme necessário */
   font-weight: bold;
   color: #fff;
+  transition: all 0.3s ease;
   text-align: center;
   justify-content: center;
   text-shadow: 
@@ -277,6 +284,47 @@ header h2:hover {
   0px 2px 0px black,     
   -2px 0px 0px black,    
   2px 0px 0px black;
+}
+
+.upgrades h1:hover {
+  cursor: pointer;
+  font-size: 3.2rem;
+  color: #6cfd6c;
+}
+
+.upgrades h2 {
+  flex: 1;
+  background-color: #3a3a3a;
+  border-bottom: #000000 solid 5px;
+  border-left: #000000 solid 2.5px;
+  margin: 0;
+  padding: 30px;
+  padding-top: 4vh;
+  font-size: 3rem; /* Ajuste o tamanho conforme necessário */
+  font-weight: bold;
+  color: #fff;
+  transition: all 0.3s ease;
+  text-align: center;
+  justify-content: center;
+  text-shadow: 
+  -2px -2px 0px black,   
+  2px -2px 0px black,    
+  -2px 2px 0px black,    
+  2px 2px 0px black,     
+  0px -2px 0px black,    
+  0px 2px 0px black,     
+  -2px 0px 0px black,    
+  2px 0px 0px black;
+}
+
+.upgrades .changeTab__container h2:hover {
+  cursor: pointer;
+  font-size: 3.2rem;
+  color: rgb(255, 0, 255);
+}
+
+.upgrades .tab_inactive {
+  filter: brightness(0.7);
 }
 
 .upgrade__container {
@@ -351,6 +399,10 @@ header h2:hover {
 
 .backgroundCapitulo2 {
   background-color: orange !important;
+}
+
+.backgroundPrestigio {
+  background-color: rgb(255, 0, 255) !important;
 }
 
 .notificacao {

@@ -271,7 +271,7 @@ function App() {
   // Prestigio
 
   function fazerPrestigio() {
-    if (nivelUpgrade11 >= 10) {
+    if (nivelUpgrade11 >= 3) {
       setNivelPrestigio(prevNivelPrestigio => prevNivelPrestigio + 1)
       setMoedaPrestigio(prevMoedaPrestigio => prevMoedaPrestigio + 1)
       setCliques(0)
@@ -534,7 +534,7 @@ function App() {
   return (
     <>
       <header className='header'>
-        <h3>Versão: Beta 1.1</h3>
+        <h3>Versão: Beta 1.1.1</h3>
         <h1>Edécio <span>Clicker</span></h1>
         <div className="save__container">
           <h2 onClick={saveProgress}>Exportar Save</h2>
@@ -639,7 +639,7 @@ function App() {
             )}
             {currentTab === 2 && (
               <>
-                <div className="upgrade__container" style={containerStyle(nivelUpgrade11 < 10)} onClick={fazerPrestigio}>
+                <div className="upgrade__container" style={containerStyle(nivelUpgrade11 < 3)} onClick={fazerPrestigio}>
                   <h3 className='backgroundPrestigio'>Fazer Prestigio 💫</h3>
                   <h5>Nivel de Prestigio: {nivelPrestigio}</h5>
                 </div>

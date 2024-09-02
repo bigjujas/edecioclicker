@@ -179,7 +179,7 @@ function saveProgress() {
     cliquesPorSegundo,
     edecio,
     wallpaper,
-    custoUpgrade,
+    custoUpgrade1,
     custoUpgrade2,
     custoUpgrade3,
     custoUpgrade4,

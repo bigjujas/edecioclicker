@@ -45,7 +45,7 @@ header h1 {
   font-weight: 600;
   text-align: center;
   justify-content: center;
-  padding-left: 17.5vh;
+  padding-left: 20.5vh;
   text-shadow: 
   -1px -1px 0px black,   
   1px -1px 0px black,    
@@ -58,7 +58,7 @@ header h1 {
 }
 
 header h1 span {
-  color:#559eff;
+  color:#0487E2;
 }
 
 header h3 {
@@ -269,7 +269,7 @@ header h2:hover {
   margin: 0;
   padding: 30px;
   padding-top: 4vh;
-  font-size: 3rem; /* Ajuste o tamanho conforme necessário */
+  font-size: 2.2rem; /* Ajuste o tamanho conforme necessário */
   font-weight: bold;
   color: #fff;
   transition: all 0.3s ease;
@@ -288,7 +288,7 @@ header h2:hover {
 
 .upgrades h1:hover {
   cursor: pointer;
-  font-size: 3.2rem;
+  font-size: 2.4rem;
   color: #6cfd6c;
 }
 
@@ -300,7 +300,7 @@ header h2:hover {
   margin: 0;
   padding: 30px;
   padding-top: 4vh;
-  font-size: 3rem; /* Ajuste o tamanho conforme necessário */
+  font-size: 2.2rem; /* Ajuste o tamanho conforme necessário */
   font-weight: bold;
   color: #fff;
   transition: all 0.3s ease;
@@ -319,8 +319,38 @@ header h2:hover {
 
 .upgrades .changeTab__container h2:hover {
   cursor: pointer;
-  font-size: 3.2rem;
+  font-size: 2.4rem;
   color: rgb(255, 0, 255);
+}
+.upgrades h3 {
+  flex: 1;
+  background-color: #3a3a3a;
+  border-bottom: #000000 solid 5px;
+  border-left: #000000 solid 2.5px;
+  margin: 0;
+  padding: 30px;
+  padding-top: 4vh;
+  font-size: 2.2rem; /* Ajuste o tamanho conforme necessário */
+  font-weight: bold;
+  color: #fff;
+  transition: all 0.3s ease;
+  text-align: center;
+  justify-content: center;
+  text-shadow: 
+  -2px -2px 0px black,   
+  2px -2px 0px black,    
+  -2px 2px 0px black,    
+  2px 2px 0px black,     
+  0px -2px 0px black,    
+  0px 2px 0px black,     
+  -2px 0px 0px black,    
+  2px 0px 0px black;
+}
+
+.upgrades .changeTab__container h3:hover {
+  cursor: pointer;
+  font-size: 2.4rem;
+  color: rgb(255, 145, 0);
 }
 
 .upgrades .tab_inactive {
@@ -401,8 +431,84 @@ header h2:hover {
   background-color: orange !important;
 }
 
+.backgroundCapitulo3 {
+  background-color: rgb(180, 115, 255) !important;
+}
+
 .backgroundPrestigio {
   background-color: rgb(255, 0, 255) !important;
+}
+
+.skin__container h4 {
+  margin: 15px auto;
+  max-width: 20%;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  transition: all 0.3s ease;
+  border: black 2px solid;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: white;
+  background-color: #535353;
+  font-size: 25px;
+  padding: 10px;
+  height: 100%;
+  border: black 1px solid;
+  text-shadow: 
+  -1px -1px 0px black,   
+  1px -1px 0px black,    
+  -1px 2px 0px black,    
+  1px 1px 0px black,     
+  0px -1px 0px black,    
+  0px 1px 0px black,     
+  -1px 0px 0px black,    
+  1px 0px 0px black;
+}
+
+.skin__boxes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.skin__box {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  margin: 20px;
+  border: black solid 2px;
+}
+
+.skin__box img {
+  height: 140px;
+  width: auto;
+}
+
+.skin__box:hover {
+  cursor: pointer;
+  transform: scale(1.08);
+}
+
+.skin__box h5 {
+  font-family: "Press Start 2P", system-ui;
+  text-align: center;
+  background-color: #292929;
+  color: #fff;
+  padding: 5px;
+  font-size: 10px;
+  font-weight: 550;
+  text-shadow: 
+  -1px -1px 0px black,   
+  1px -1px 0px black,    
+  -1px 2px 0px black,    
+  1px 1px 0px black,     
+  0px -1px 0px black,    
+  0px 1px 0px black,     
+  -1px 0px 0px black,    
+  1px 0px 0px black;
 }
 
 .notificacao {

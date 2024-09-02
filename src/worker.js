@@ -15,7 +15,7 @@ self.onmessage = function(event) {
       break;
     case 'START':
       setInterval(() => {
-        cliques += ((cliquesPorSegundo / 10) * multiplicadorPrestigio);
+        cliques += ((cliquesPorSegundo * multiplicadorPrestigio) / 10);
         self.postMessage({ type: 'UPDATE_CLIQUES', value: cliques });
       }, 100);
       break;

@@ -1,5 +1,6 @@
 let cliques = 0;
 let cliquesPorSegundo = 1;
+let multiplicadorPrestigio = 1;
 
 self.onmessage = function(event) {
   switch (event.data.type) {

@@ -534,7 +534,7 @@ function App() {
   return (
     <>
       <header className='header'>
-        <h3>Versão: Beta 1.1.1</h3>
+        <h3>Versão: Beta 1.1.3</h3>
         <h1>Edécio <span>Clicker</span></h1>
         <div className="save__container">
           <h2 onClick={saveProgress}>Exportar Save</h2>

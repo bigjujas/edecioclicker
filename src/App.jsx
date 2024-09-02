@@ -139,9 +139,9 @@ function App() {
   const [cpsUpgrade6, setCpsUpgrade6] = useState(60)
   const [cpsUpgrade7, setCpsUpgrade7] = useState(200)
   const [cpsUpgrade8, setCpsUpgrade8] = useState(500)
-  const [cpsUpgrade9, setCpsUpgrade9] = useState(1500)
-  const [cpsUpgrade10, setCpsUpgrade10] = useState(200)
-  const [cpsUpgrade11, setCpsUpgrade11] = useState(5000)
+  const [cpsUpgrade9, setCpsUpgrade9] = useState(2500)
+  const [cpsUpgrade10, setCpsUpgrade10] = useState(300)
+  const [cpsUpgrade11, setCpsUpgrade11] = useState(7000)
   const [cpsUpgrade12, setCpsUpgrade12] = useState(10000)
   const [cpsUpgrade13, setCpsUpgrade13] = useState(25000)
   const [cpsUpgrade14, setCpsUpgrade14] = useState(3000)
@@ -606,9 +606,9 @@ function App() {
       setCpsUpgrade6(60);
       setCpsUpgrade7(200);
       setCpsUpgrade8(500);
-      setCpsUpgrade9(1500);
-      setCpsUpgrade10(200);
-      setCpsUpgrade11(5000);
+      setCpsUpgrade9(2500);
+      setCpsUpgrade10(300);
+      setCpsUpgrade11(7000);
       setCpsUpgrade12(10000);
       setCpsUpgrade13(25000);
       setCpsUpgrade14(3000);

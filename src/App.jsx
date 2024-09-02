@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import CryptoJS from 'crypto-js';
 import './css/App.css'
 import './css/reset.css'
 
@@ -80,7 +81,7 @@ function App() {
 
   // Custos Base //
 
-  const [custoUpgrade1, setCustoUpgrade] = useState(10)
+  const [custoUpgrade1, setCustoUpgrade1] = useState(10)
   const [custoUpgrade2, setCustoUpgrade2] = useState(30)
   const [custoUpgrade3, setCustoUpgrade3] = useState(50)
   const [custoUpgrade4, setCustoUpgrade4] = useState(300)
@@ -168,181 +169,180 @@ function App() {
 
   // Save System //
 
-  function saveProgress() {
-    const progress = {
-      cliques,
-      multiplicador,
-      cliquesPorSegundo,
-      //
-      edecio,
-      wallpaper,
-      //
-      custoUpgrade1,
-      custoUpgrade2,
-      custoUpgrade3,
-      custoUpgrade4,
-      custoUpgrade5,
-      custoUpgrade6,
-      custoUpgrade7,
-      custoUpgrade8,
-      custoUpgrade9,
-      custoUpgrade10,
-      custoUpgrade11,
-      custoUpgrade12,
-      custoUpgrade13,
-      custoUpgrade14,
-      //
-      nivelUpgrade1,
-      nivelUpgrade2,
-      nivelUpgrade3,
-      nivelUpgrade4,
-      nivelUpgrade5,
-      nivelUpgrade6,
-      nivelUpgrade7,
-      nivelUpgrade8,
-      nivelUpgrade9,
-      nivelUpgrade10,
-      nivelUpgrade11,
-      nivelUpgrade12,
-      nivelUpgrade13,
-      nivelUpgrade14,
-      //
-      cpsUpgrade1,
-      cpsUpgrade2,
-      cpsUpgrade3,
-      cpsUpgrade4,
-      cpsUpgrade5,
-      cpsUpgrade6,
-      cpsUpgrade7,
-      cpsUpgrade8,
-      cpsUpgrade9,
-      cpsUpgrade10,
-      cpsUpgrade11,
-      cpsUpgrade12,
-      cpsUpgrade13,
-      cpsUpgrade14,
-      //
-      nivelPrestigio,
-      moedaPrestigio,
-      multiplicadorPrestigio,
-      nivelMultiplicadorPrestigio,
-      //
-      coffeeEdecioSkin,
-      programmerEdecioSkin,
-      chadEdecioSkin,
-      criaEdecioSkin,
-      prisionerEdecioSkin,
-      minecraftEdecioSkin,
-      futEdecioSkin,
-      samuraiEdecioSkin,
-      //
-      academiaFundo,
-      praiaFundo,
-      prisaoFundo,
-      netherFundo,
-      casaAutomaticaFundo,
-      futFundo,
-      temploFundo,
-    };
+// Chave secreta para criptografia
+const SECRET_KEY = '1.0';
 
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(progress));
-    const downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "edecio_clicker_save.json");
-    document.body.appendChild(downloadAnchorNode); // necessário para o Firefox
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
-  }
-
-  function loadProgress(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      const progress = JSON.parse(e.target.result);
-
-      // Atualizar os estados com os valores do save
-      setCliques(progress.cliques);
-      setMultiplicador(progress.multiplicador);
-      setCliquesPorSegundo(progress.cliquesPorSegundo);
-      //
-      setEdecio(progress.edecio);
-      setWallpaper(progress.wallpaper);
-      //
-      setCustoUpgrade(progress.custoUpgrade1);
-      setCustoUpgrade2(progress.custoUpgrade2);
-      setCustoUpgrade3(progress.custoUpgrade3);
-      setCustoUpgrade4(progress.custoUpgrade4);
-      setCustoUpgrade5(progress.custoUpgrade5);
-      setCustoUpgrade6(progress.custoUpgrade6);
-      setCustoUpgrade7(progress.custoUpgrade7);
-      setCustoUpgrade8(progress.custoUpgrade8);
-      setCustoUpgrade9(progress.custoUpgrade9);
-      setCustoUpgrade10(progress.custoUpgrade10);
-      setCustoUpgrade11(progress.custoUpgrade11);
-      setCustoUpgrade12(progress.custoUpgrade12);
-      setCustoUpgrade13(progress.custoUpgrade13);
-      setCustoUpgrade14(progress.custoUpgrade14);
-      //
-      setNivelUpgrade1(progress.nivelUpgrade1);
-      setNivelUpgrade2(progress.nivelUpgrade2);
-      setNivelUpgrade3(progress.nivelUpgrade3);
-      setNivelUpgrade4(progress.nivelUpgrade4);
-      setNivelUpgrade5(progress.nivelUpgrade5);
-      setNivelUpgrade6(progress.nivelUpgrade6);
-      setNivelUpgrade7(progress.nivelUpgrade7);
-      setNivelUpgrade8(progress.nivelUpgrade8);
-      setNivelUpgrade9(progress.nivelUpgrade9);
-      setNivelUpgrade10(progress.nivelUpgrade10);
-      setNivelUpgrade11(progress.nivelUpgrade11);
-      setNivelUpgrade12(progress.nivelUpgrade12);
-      setNivelUpgrade13(progress.nivelUpgrade13);
-      setNivelUpgrade14(progress.nivelUpgrade14);
-      //
-      setCpsUpgrade1(progress.cpsUpgrade1)
-      setCpsUpgrade2(progress.cpsUpgrade2)
-      setCpsUpgrade3(progress.cpsUpgrade3)
-      setCpsUpgrade4(progress.cpsUpgrade4)
-      setCpsUpgrade5(progress.cpsUpgrade5)
-      setCpsUpgrade6(progress.cpsUpgrade6)
-      setCpsUpgrade7(progress.cpsUpgrade7)
-      setCpsUpgrade8(progress.cpsUpgrade8)
-      setCpsUpgrade9(progress.cpsUpgrade9)
-      setCpsUpgrade10(progress.cpsUpgrade10)
-      setCpsUpgrade11(progress.cpsUpgrade11)
-      setCpsUpgrade12(progress.cpsUpgrade12)
-      setCpsUpgrade13(progress.cpsUpgrade13)
-      setCpsUpgrade14(progress.cpsUpgrade14)
-      //
-      setNivelPrestigio(progress.nivelPrestigio)
-      setMoedaPrestigio(progress.moedaPrestigio)
-      setMultiplicadorPrestigio(progress.multiplicadorPrestigio)
-      setNivelMultiplicadorPrestigio(progress.nivelMultiplicadorPrestigio)
-      //
-      setCoffeeEdecioSkin(progress.coffeeEdecioSkin)
-      setProgrammerEdecioSkin(progress.programmerEdecioSkin)
-      setChadEdecioSkin(progress.chadEdecioSkin)
-      setCriaEdecioSkin(progress.criaEdecioSkin)
-      setPrisionerEdecioSkin(progress.prisionerEdecioSkin)
-      setMinecraftEdecioSkin(progress.minecraftEdecioSkin)
-      setFutEdecioSkin(progress.futEdecioSkin)
-      setSamuraiEdecioSkin(progress.samuraiEdecioSkin)
-      //
-      setAcademiaFundo(progress.academiaFundo)
-      setPraiaFundo(progress.praiaFundo)
-      setPrisaoFundo(progress.prisaoFundo)
-      setNetherFundo(progress.netherFundo)
-      setCasaAutomaticaFundo(progress.casaAutomaticaFundo)
-      setFutFundo(progress.futFundo)
-      setTemploFundo(progress.temploFundo)
-    };
-
-    reader.readAsText(file);
-  }
-
-  const importSaveClick = () => {
-    document.getElementById("fileInput").click();
+function saveProgress() {
+  const progress = {
+    cliques,
+    multiplicador,
+    cliquesPorSegundo,
+    edecio,
+    wallpaper,
+    custoUpgrade,
+    custoUpgrade2,
+    custoUpgrade3,
+    custoUpgrade4,
+    custoUpgrade5,
+    custoUpgrade6,
+    custoUpgrade7,
+    custoUpgrade8,
+    custoUpgrade9,
+    custoUpgrade10,
+    custoUpgrade11,
+    custoUpgrade12,
+    custoUpgrade13,
+    custoUpgrade14,
+    nivelUpgrade1,
+    nivelUpgrade2,
+    nivelUpgrade3,
+    nivelUpgrade4,
+    nivelUpgrade5,
+    nivelUpgrade6,
+    nivelUpgrade7,
+    nivelUpgrade8,
+    nivelUpgrade9,
+    nivelUpgrade10,
+    nivelUpgrade11,
+    nivelUpgrade12,
+    nivelUpgrade13,
+    nivelUpgrade14,
+    cpsUpgrade1,
+    cpsUpgrade2,
+    cpsUpgrade3,
+    cpsUpgrade4,
+    cpsUpgrade5,
+    cpsUpgrade6,
+    cpsUpgrade7,
+    cpsUpgrade8,
+    cpsUpgrade9,
+    cpsUpgrade10,
+    cpsUpgrade11,
+    cpsUpgrade12,
+    cpsUpgrade13,
+    cpsUpgrade14,
+    nivelPrestigio,
+    moedaPrestigio,
+    multiplicadorPrestigio,
+    nivelMultiplicadorPrestigio,
+    coffeeEdecioSkin,
+    programmerEdecioSkin,
+    chadEdecioSkin,
+    criaEdecioSkin,
+    prisionerEdecioSkin,
+    minecraftEdecioSkin,
+    futEdecioSkin,
+    samuraiEdecioSkin,
+    academiaFundo,
+    praiaFundo,
+    prisaoFundo,
+    netherFundo,
+    casaAutomaticaFundo,
+    futFundo,
+    temploFundo,
   };
+
+  console.log("Dados a serem salvos:", progress); // Log dos dados antes da criptografia
+
+  // Criptografar os dados
+  const encrypted = CryptoJS.AES.encrypt(JSON.stringify(progress), SECRET_KEY).toString();
+
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(encrypted);
+  const downloadAnchorNode = document.createElement('a');
+  downloadAnchorNode.setAttribute("href", dataStr);
+  downloadAnchorNode.setAttribute("download", "edecio_clicker_save.json");
+  document.body.appendChild(downloadAnchorNode); // necessário para o Firefox
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
+}
+
+function loadProgress(event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    const encrypted = e.target.result;
+    
+    // Descriptografar os dados
+    const bytes = CryptoJS.AES.decrypt(encrypted, SECRET_KEY);
+    const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+    const progress = JSON.parse(decrypted);
+
+    // Atualizar os estados com os valores do save
+    setCliques(progress.cliques);
+    setMultiplicador(progress.multiplicador);
+    setCliquesPorSegundo(progress.cliquesPorSegundo);
+    setEdecio(progress.edecio);
+    setWallpaper(progress.wallpaper);
+    setCustoUpgrade1(progress.custoUpgrade1);
+    setCustoUpgrade2(progress.custoUpgrade2);
+    setCustoUpgrade3(progress.custoUpgrade3);
+    setCustoUpgrade4(progress.custoUpgrade4);
+    setCustoUpgrade5(progress.custoUpgrade5);
+    setCustoUpgrade6(progress.custoUpgrade6);
+    setCustoUpgrade7(progress.custoUpgrade7);
+    setCustoUpgrade8(progress.custoUpgrade8);
+    setCustoUpgrade9(progress.custoUpgrade9);
+    setCustoUpgrade10(progress.custoUpgrade10);
+    setCustoUpgrade11(progress.custoUpgrade11);
+    setCustoUpgrade12(progress.custoUpgrade12);
+    setCustoUpgrade13(progress.custoUpgrade13);
+    setCustoUpgrade14(progress.custoUpgrade14);
+    setNivelUpgrade1(progress.nivelUpgrade1);
+    setNivelUpgrade2(progress.nivelUpgrade2);
+    setNivelUpgrade3(progress.nivelUpgrade3);
+    setNivelUpgrade4(progress.nivelUpgrade4);
+    setNivelUpgrade5(progress.nivelUpgrade5);
+    setNivelUpgrade6(progress.nivelUpgrade6);
+    setNivelUpgrade7(progress.nivelUpgrade7);
+    setNivelUpgrade8(progress.nivelUpgrade8);
+    setNivelUpgrade9(progress.nivelUpgrade9);
+    setNivelUpgrade10(progress.nivelUpgrade10);
+    setNivelUpgrade11(progress.nivelUpgrade11);
+    setNivelUpgrade12(progress.nivelUpgrade12);
+    setNivelUpgrade13(progress.nivelUpgrade13);
+    setNivelUpgrade14(progress.nivelUpgrade14);
+    setCpsUpgrade1(progress.cpsUpgrade1);
+    setCpsUpgrade2(progress.cpsUpgrade2);
+    setCpsUpgrade3(progress.cpsUpgrade3);
+    setCpsUpgrade4(progress.cpsUpgrade4);
+    setCpsUpgrade5(progress.cpsUpgrade5);
+    setCpsUpgrade6(progress.cpsUpgrade6);
+    setCpsUpgrade7(progress.cpsUpgrade7);
+    setCpsUpgrade8(progress.cpsUpgrade8);
+    setCpsUpgrade9(progress.cpsUpgrade9);
+    setCpsUpgrade10(progress.cpsUpgrade10);
+    setCpsUpgrade11(progress.cpsUpgrade11);
+    setCpsUpgrade12(progress.cpsUpgrade12);
+    setCpsUpgrade13(progress.cpsUpgrade13);
+    setCpsUpgrade14(progress.cpsUpgrade14);
+    setNivelPrestigio(progress.nivelPrestigio);
+    setMoedaPrestigio(progress.moedaPrestigio);
+    setMultiplicadorPrestigio(progress.multiplicadorPrestigio);
+    setNivelMultiplicadorPrestigio(progress.nivelMultiplicadorPrestigio);
+    setCoffeeEdecioSkin(progress.coffeeEdecioSkin);
+    setProgrammerEdecioSkin(progress.programmerEdecioSkin);
+    setChadEdecioSkin(progress.chadEdecioSkin);
+    setCriaEdecioSkin(progress.criaEdecioSkin);
+    setPrisionerEdecioSkin(progress.prisionerEdecioSkin);
+    setMinecraftEdecioSkin(progress.minecraftEdecioSkin);
+    setFutEdecioSkin(progress.futEdecioSkin);
+    setSamuraiEdecioSkin(progress.samuraiEdecioSkin);
+    setAcademiaFundo(progress.academiaFundo);
+    setPraiaFundo(progress.praiaFundo);
+    setPrisaoFundo(progress.prisaoFundo);
+    setNetherFundo(progress.netherFundo);
+    setCasaAutomaticaFundo(progress.casaAutomaticaFundo);
+    setFutFundo(progress.futFundo);
+    setTemploFundo(progress.temploFundo);
+  };
+
+  reader.readAsText(file);
+}
+
+const importSaveClick = () => {
+  document.getElementById("fileInput").click();
+};
 
   // Funçoes do Jogo //
 
@@ -484,7 +484,7 @@ function App() {
       setCliques(0)
       setMultiplicador(1)
       setCliquesPorSegundo(0)
-      setCustoUpgrade(10)
+      setCustoUpgrade1(10)
       setCustoUpgrade2(30)
       setCustoUpgrade3(50)
       setCustoUpgrade4(300)
@@ -552,7 +552,7 @@ function App() {
         return novoNivel;
       });
       setCliquesPorSegundo(prevCliquesPorSegundo => prevCliquesPorSegundo + cpsUpgrade1)
-      setCustoUpgrade(prevCusto => Math.floor(prevCusto * 1.15))
+      setCustoUpgrade1(prevCusto => Math.floor(prevCusto * 1.15))
       setCoffeeEdecioSkin(1)
     }
   }
@@ -760,7 +760,7 @@ function App() {
         }
         return novoNivel;
       });
-      setCliquesPorSegundo(prevCliquesPorSegundo => prevCliquesPorSegundo + cpsUpgrade14)
+      setMultiplicador(prevMultiplicador => prevMultiplicador + cpsUpgrade14)
       setCustoUpgrade14(prevCusto => Math.floor(prevCusto * 1.35))
       setSamuraiEdecioSkin(1)
     }
@@ -800,7 +800,7 @@ function App() {
   return (
     <>
       <header className='header'>
-        <h3>Versão: 1.0</h3>
+        <h3>Versão: 1.1</h3>
         <h1>Edécio <span>Clicker</span></h1>
         <div className="save__container">
           <h2 onClick={saveProgress}>Exportar Save</h2>

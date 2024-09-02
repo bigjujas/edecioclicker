@@ -160,12 +160,32 @@ header h2:hover {
   text-align: center;
 }
 
+.game__container h4 {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(255, 0, 255);
+  text-shadow: 
+  -2px -2px 0px black,   
+  2px -2px 0px black,    
+  -2px 2px 0px black,    
+  2px 2px 0px black,     
+  0px -2px 0px black,    
+  0px 2px 0px black,     
+  -2px 0px 0px black,    
+  2px 0px 0px black;
+}
+
 .displaybalance {
   display: flex;
   text-align: center;
   justify-content: center;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
+  margin-top: 20px;
   letter-spacing: 2px;
   font-size: 50px;
   margin-bottom: 2vh;

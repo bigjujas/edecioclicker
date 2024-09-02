@@ -800,7 +800,7 @@ const importSaveClick = () => {
   return (
     <>
       <header className='header'>
-        <h3>Versão: 1.1</h3>
+        <h3>Versão: 1.2</h3>
         <h1>Edécio <span>Clicker</span></h1>
         <div className="save__container">
           <h2 onClick={saveProgress}>Exportar Save</h2>
@@ -814,6 +814,7 @@ const importSaveClick = () => {
       <div className="container">
         <div className="left-side" style={{ backgroundImage: `url(${wallpaper})`, }}>
           <div className="game__container">
+            <h4>{nivelPrestigio > 0 ? `Prestigio: ${nivelPrestigio}` : ""}</h4>
             <div className="displaybalance">
               <h1>${displayCliques}</h1>
               <img src={edeciocoin} alt="" draggable="false" />
@@ -850,73 +851,73 @@ const importSaveClick = () => {
                 </div>
                 <div className="upgrade__container" style={LockedUpgrade(nivelUpgrade2 < 10)} onClick={Upgrade3}>
                   <h2>{nivelUpgrade2 >= 1 ? `+${parseFloat(cpsUpgrade3.toFixed(2))} P/s` : "???"}</h2>
-                  <h3>{nivelUpgrade2 >= 1 ? "Programação 💻" : "???????????"}</h3>
+                  <h3>{nivelUpgrade2 >= 1 ? "Programação 💻" : "???"}</h3>
                   <h4 style={custoStyle(custoUpgrade3)}>{nivelUpgrade2 >= 10 ? `$${formatNumber(custoUpgrade3)}` : "🔒"}</h4>
                   <h5>Nv.{nivelUpgrade3}</h5>
                 </div>
                 <div className="upgrade__container" style={LockedUpgrade(nivelUpgrade3 < 10)} onClick={Upgrade4}>
                   <h2>{nivelUpgrade3 >= 1 ? `+${parseFloat(cpsUpgrade4.toFixed(2))} P/s` : "???"}</h2>
-                  <h3>{nivelUpgrade3 >= 1 ? "Academia Avenida 💪" : "???????????"}</h3>
+                  <h3>{nivelUpgrade3 >= 1 ? "Academia Avenida 💪" : "???"}</h3>
                   <h4 style={custoStyle(custoUpgrade4)}>{nivelUpgrade3 >= 10 ? `$${formatNumber(custoUpgrade4)}` : "🔒"}</h4>
                   <h5>Nv.{nivelUpgrade4}</h5>
                 </div>
                 <div className="upgrade__container" style={LockedUpgrade(nivelUpgrade4 < 10)} onClick={Upgrade5}>
                   <h2>{nivelUpgrade4 >= 1 ? `+${parseFloat(cpsUpgrade5.toFixed(2))}` : "???"}</h2>
-                  <h3>{nivelUpgrade4 >= 1 ? "Projetinho 🗿" : "???????????"}</h3>
+                  <h3>{nivelUpgrade4 >= 1 ? "Projetinho 🗿" : "???"}</h3>
                   <h4 style={custoStyle(custoUpgrade5)}>{nivelUpgrade4 >= 10 ? `$${formatNumber(custoUpgrade5)}` : "🔒"}</h4>
                   <h5>Nv.{nivelUpgrade5}</h5>
                 </div>
                 <div className="upgrade__container" style={LockedUpgrade(nivelUpgrade5 < 10)} onClick={Upgrade6}>
                   <h2>{nivelUpgrade5 >= 1 ? `+${parseFloat(cpsUpgrade6.toFixed(2))} P/s` : "???"}</h2>
-                  <h3>{nivelUpgrade5 >= 1 ? "Prainha 🏝️" : "???????????"}</h3>
+                  <h3>{nivelUpgrade5 >= 1 ? "Prainha 🏝️" : "???"}</h3>
                   <h4 style={custoStyle(custoUpgrade6)}>{nivelUpgrade5 >= 10 ? `$${formatNumber(custoUpgrade6)}` : "🔒"}</h4>
                   <h5>Nv.{nivelUpgrade6}</h5>
                 </div>
                 <div className="upgrade__container" style={LockedUpgrade(nivelUpgrade6 < 10)} onClick={Upgrade7}>
                   <h2>{nivelUpgrade6 >= 1 ? `+${parseFloat(cpsUpgrade7.toFixed(2))} P/s` : "???"}</h2>
-                  <h3>{nivelUpgrade6 >= 1 ? "Cria 🤬" : "???????????"}</h3>
+                  <h3>{nivelUpgrade6 >= 1 ? "Cria 🤬" : "???"}</h3>
                   <h4 style={custoStyle(custoUpgrade7)}>{nivelUpgrade6 >= 10 ? `$${formatNumber(custoUpgrade7)}` : "🔒"}</h4>
                   <h5>Nv.{nivelUpgrade7}</h5>
                 </div>
                 <div className="upgrade__container" style={LockedUpgrade(nivelUpgrade7 < 10)} onClick={Upgrade8}>
                   <h2>{nivelUpgrade7 >= 1 ? `+${parseFloat(cpsUpgrade8.toFixed(2))} P/s` : "???"}</h2>
-                  <h3>{nivelUpgrade7 >= 1 ? "Prisão ⛓️" : "???????????"}</h3>
+                  <h3>{nivelUpgrade7 >= 1 ? "Prisão ⛓️" : "???"}</h3>
                   <h4 style={custoStyle(custoUpgrade8)}>{nivelUpgrade7 >= 10 ? `$${formatNumber(custoUpgrade8)}` : "🔒"}</h4>
                   <h5>Nv.{nivelUpgrade8}</h5>
                 </div>
                 <div className="upgrade__container" style={LockedUpgrade(nivelUpgrade8 < 10)} onClick={Upgrade9}>
                   <h2>{nivelUpgrade8 >= 1 ? `+${parseFloat(cpsUpgrade9.toFixed(2))} P/s` : "???"}</h2>
-                  <h3 className='backgroundCapitulo2'>{nivelUpgrade8 >= 1 ? "Nether 🕳️" : "???????????"}</h3>
+                  <h3 className='backgroundCapitulo2'>{nivelUpgrade8 >= 1 ? "Nether 🕳️" : "???"}</h3>
                   <h4 style={custoStyle(custoUpgrade9)}>{nivelUpgrade8 >= 10 ? `$${formatNumber(custoUpgrade9)}` : "🔒"}</h4>
                   <h5>Nv.{nivelUpgrade9}</h5>
                 </div>
                 <div className="upgrade__container" style={LockedUpgrade(nivelUpgrade9 < 10)} onClick={Upgrade10}>
                   <h2>{nivelUpgrade9 >= 1 ? `+${parseFloat(cpsUpgrade10.toFixed(2))}` : "???"}</h2>
-                  <h3 className='backgroundCapitulo2'>{nivelUpgrade9 >= 1 ? "Full Dima 💎" : "???????????"}</h3>
+                  <h3 className='backgroundCapitulo2'>{nivelUpgrade9 >= 1 ? "Full Dima 💎" : "???"}</h3>
                   <h4 style={custoStyle(custoUpgrade10)}>{nivelUpgrade9 >= 10 ? `$${formatNumber(custoUpgrade10)}` : "🔒"}</h4>
                   <h5>Nv.{nivelUpgrade10}</h5>
                 </div>
                 <div className="upgrade__container" style={LockedUpgrade(nivelUpgrade10 < 10)} onClick={Upgrade11}>
                   <h2>{nivelUpgrade10 >= 1 ? `+${parseFloat(cpsUpgrade11.toFixed(2))} P/s` : "???"}</h2>
-                  <h3 className='backgroundCapitulo2'>{nivelUpgrade10 >= 1 ? "Casa Automatica 🏠" : "???????????"}</h3>
+                  <h3 className='backgroundCapitulo2'>{nivelUpgrade10 >= 1 ? "Casa Automatica 🏠" : "???"}</h3>
                   <h4 style={custoStyle(custoUpgrade11)}>{nivelUpgrade10 >= 10 ? `$${formatNumber(custoUpgrade11)}` : "🔒"}</h4>
                   <h5>Nv.{nivelUpgrade11}</h5>
                 </div>
                 <div className="upgrade__container" style={LockedUpgrade(nivelUpgrade11 < 10)} onClick={Upgrade12}>
                   <h2>{nivelUpgrade11 >= 1 ? `+${parseFloat(cpsUpgrade12.toFixed(2))} P/s` : "???"}</h2>
-                  <h3 className='backgroundCapitulo2'>{nivelUpgrade11 >= 1 ? "Atleta ⚽️" : "???????????"}</h3>
+                  <h3 className='backgroundCapitulo2'>{nivelUpgrade11 >= 1 ? "Atleta ⚽️" : "???"}</h3>
                   <h4 style={custoStyle(custoUpgrade12)}>{nivelUpgrade11 >= 10 ? `$${formatNumber(custoUpgrade12)}` : "🔒"}</h4>
                   <h5>Nv.{nivelUpgrade12}</h5>
                 </div>
                 <div className="upgrade__container" style={LockedUpgrade(nivelUpgrade12 < 10)} onClick={Upgrade13}>
                   <h2>{nivelUpgrade12 >= 1 ? `+${parseFloat(cpsUpgrade13.toFixed(2))} P/s` : "???"}</h2>
-                  <h3 className='backgroundCapitulo3'>{nivelUpgrade12 >= 1 ? "Templo 🛕" : "???????????"}</h3>
+                  <h3 className='backgroundCapitulo3'>{nivelUpgrade12 >= 1 ? "Templo 🛕" : "???"}</h3>
                   <h4 style={custoStyle(custoUpgrade13)}>{nivelUpgrade12 >= 10 ? `$${formatNumber(custoUpgrade13)}` : "🔒"}</h4>
                   <h5>Nv.{nivelUpgrade13}</h5>
                 </div>
                 <div className="upgrade__container" style={LockedUpgrade(nivelUpgrade13 < 10)} onClick={Upgrade14}>
                   <h2>{nivelUpgrade13 >= 1 ? `+${parseFloat(cpsUpgrade14.toFixed(2))} P/s` : "???"}</h2>
-                  <h3 className='backgroundCapitulo3'>{nivelUpgrade13 >= 1 ? "Samurai 🥷🏻" : "???????????"}</h3>
+                  <h3 className='backgroundCapitulo3'>{nivelUpgrade13 >= 1 ? "Samurai 🥷🏻" : "???"}</h3>
                   <h4 style={custoStyle(custoUpgrade14)}>{nivelUpgrade13 >= 10 ? `$${formatNumber(custoUpgrade14)}` : "🔒"}</h4>
                   <h5>Nv.{nivelUpgrade14}</h5>
                 </div>

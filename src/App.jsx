@@ -556,7 +556,7 @@ function App() {
   // Prestigio
 
   function fazerPrestigio() {
-    if (nivelUpgrade14 >= 1) {
+    if (nivelUpgrade18 >= 1) {
       setNivelPrestigio(prevNivelPrestigio => prevNivelPrestigio + 1)
       setMoedaPrestigio(prevMoedaPrestigio => prevMoedaPrestigio + 1)
       setCliques(0)

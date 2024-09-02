@@ -448,11 +448,19 @@ header h2:hover {
 }
 
 .backgroundCapitulo2 {
-  background-color: orange !important;
+  background-color: #ffc862 !important;
 }
 
 .backgroundCapitulo3 {
-  background-color: rgb(180, 115, 255) !important;
+  background-color: #5699ff !important;
+}
+
+.backgroundCapitulo4 {
+  background-color: #ff6a6a !important;
+}
+
+.backgroundCapitulo5 {
+  background-color: #b473ff !important;
 }
 
 .backgroundPrestigio {

@@ -169,7 +169,7 @@ function App() {
   const LockedSkin = (isLocked) => ({
     cursor: isLocked ? 'not-allowed' : 'pointer',
     filter: isLocked ? 'brightness(0.05) saturate(0.0)' : 'brightness(1)',
-    pointerEvents: isLocked ? 'not-allowed none' : 'auto',
+    pointerEvents: isLocked ? 'none' : 'auto',
   });
 
   const EquippedSkin = (isLocked) => ({

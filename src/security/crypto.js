@@ -11,7 +11,6 @@ export function encryptSave(progress) {
 export function decryptSave(encrypted) {
   const bytes = CryptoJS.AES.decrypt(encrypted, SECRET_KEY);
   const decrypted = bytes.toString(CryptoJS.enc.Utf8);
-  console.log(decrypted);
   const progress = JSON.parse(decrypted);
   return progress;
 }

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import CryptoJS from 'crypto-js';
 import './css/App.css'
 import './css/reset.css'
 
@@ -29,6 +28,9 @@ import wallpaper7 from './assets/mainWallpaper7.jpg'
 import wallpaper8 from './assets/mainWallpaper8.jpg'
 import wallpaper9 from './assets/mainWallpaper9.jpg'
 import wallpaper10 from './assets/mainWallpaper10.jpg'
+import useCookiesSave from './hooks/useCookiesSave';
+import { decryptSave, encryptSave } from './security/crypto'
+import { AUTO_SAVE_INTERVAL } from './constants'
 
 let notificationId = 0; // Let para notificação de Cps na Tela
 
@@ -189,11 +191,37 @@ function App() {
   }
 
   // Save System //
+  const { saveToCookies, loadFromCookies} = useCookiesSave();
 
-  // Chave secreta para criptografia
-  const SECRET_KEY = '1.0';
+  function saveToFile() {
+    const progress = getAllStates();
 
-  function saveProgress() {
+
+    // Criptografar os dados
+    const encrypted = encryptSave(progress);
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(encrypted);
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "edecio_clicker_save.json");
+    document.body.appendChild(downloadAnchorNode); // necessário para o Firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  }
+
+  function loadFromFile(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const encrypted = e.target.result;
+      const progress = decryptSave(encrypted);
+      setAllStates(progress);
+    }
+    reader.readAsText(file);
+  }
+  
+
+  function getAllStates(){
     const progress = {
       cliques,
       multiplicador,
@@ -280,119 +308,98 @@ function App() {
       temploFundo,
     };
 
-    console.log("Dados a serem salvos:", progress); // Log dos dados antes da criptografia
-
-    // Criptografar os dados
-    const encrypted = CryptoJS.AES.encrypt(JSON.stringify(progress), SECRET_KEY).toString();
-
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(encrypted);
-    const downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "edecio_clicker_save.json");
-    document.body.appendChild(downloadAnchorNode); // necessário para o Firefox
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
+    return progress;
   }
 
-  function loadProgress(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      const encrypted = e.target.result;
-
-      // Descriptografar os dados
-      const bytes = CryptoJS.AES.decrypt(encrypted, SECRET_KEY);
-      const decrypted = bytes.toString(CryptoJS.enc.Utf8);
-      const progress = JSON.parse(decrypted);
-
-      // Atualizar os estados com os valores do save
-      setCliques(progress.cliques);
-      setMultiplicador(progress.multiplicador);
-      setCliquesPorSegundo(progress.cliquesPorSegundo);
-      setEdecio(progress.edecio);
-      setWallpaper(progress.wallpaper);
-      setCustoUpgrade1(progress.custoUpgrade1);
-      setCustoUpgrade2(progress.custoUpgrade2);
-      setCustoUpgrade3(progress.custoUpgrade3);
-      setCustoUpgrade4(progress.custoUpgrade4);
-      setCustoUpgrade5(progress.custoUpgrade5);
-      setCustoUpgrade6(progress.custoUpgrade6);
-      setCustoUpgrade7(progress.custoUpgrade7);
-      setCustoUpgrade8(progress.custoUpgrade8);
-      setCustoUpgrade9(progress.custoUpgrade9);
-      setCustoUpgrade10(progress.custoUpgrade10);
-      setCustoUpgrade11(progress.custoUpgrade11);
-      setCustoUpgrade12(progress.custoUpgrade12);
-      setCustoUpgrade13(progress.custoUpgrade13);
-      setCustoUpgrade14(progress.custoUpgrade14);
-      setCustoUpgrade15(progress.custoUpgrade15);
-      setCustoUpgrade16(progress.custoUpgrade16);
-      setCustoUpgrade17(progress.custoUpgrade17);
-      setCustoUpgrade18(progress.custoUpgrade18);
-      setNivelUpgrade1(progress.nivelUpgrade1);
-      setNivelUpgrade2(progress.nivelUpgrade2);
-      setNivelUpgrade3(progress.nivelUpgrade3);
-      setNivelUpgrade4(progress.nivelUpgrade4);
-      setNivelUpgrade5(progress.nivelUpgrade5);
-      setNivelUpgrade6(progress.nivelUpgrade6);
-      setNivelUpgrade7(progress.nivelUpgrade7);
-      setNivelUpgrade8(progress.nivelUpgrade8);
-      setNivelUpgrade9(progress.nivelUpgrade9);
-      setNivelUpgrade10(progress.nivelUpgrade10);
-      setNivelUpgrade11(progress.nivelUpgrade11);
-      setNivelUpgrade12(progress.nivelUpgrade12);
-      setNivelUpgrade13(progress.nivelUpgrade13);
-      setNivelUpgrade14(progress.nivelUpgrade14);
-      setNivelUpgrade15(progress.nivelUpgrade15);
-      setNivelUpgrade16(progress.nivelUpgrade16);
-      setNivelUpgrade17(progress.nivelUpgrade17);
-      setNivelUpgrade18(progress.nivelUpgrade18);
-      setCpsUpgrade1(progress.cpsUpgrade1);
-      setCpsUpgrade2(progress.cpsUpgrade2);
-      setCpsUpgrade3(progress.cpsUpgrade3);
-      setCpsUpgrade4(progress.cpsUpgrade4);
-      setCpsUpgrade5(progress.cpsUpgrade5);
-      setCpsUpgrade6(progress.cpsUpgrade6);
-      setCpsUpgrade7(progress.cpsUpgrade7);
-      setCpsUpgrade8(progress.cpsUpgrade8);
-      setCpsUpgrade9(progress.cpsUpgrade9);
-      setCpsUpgrade10(progress.cpsUpgrade10);
-      setCpsUpgrade11(progress.cpsUpgrade11);
-      setCpsUpgrade12(progress.cpsUpgrade12);
-      setCpsUpgrade13(progress.cpsUpgrade13);
-      setCpsUpgrade14(progress.cpsUpgrade14);
-      setCpsUpgrade15(progress.cpsUpgrade15);
-      setCpsUpgrade16(progress.cpsUpgrade16);
-      setCpsUpgrade17(progress.cpsUpgrade17);
-      setCpsUpgrade18(progress.cpsUpgrade18);
-      setNivelPrestigio(progress.nivelPrestigio);
-      setMoedaPrestigio(progress.moedaPrestigio);
-      setMultiplicadorPrestigio(progress.multiplicadorPrestigio);
-      setNivelMultiplicadorPrestigio(progress.nivelMultiplicadorPrestigio);
-      setCoffeeEdecioSkin(progress.coffeeEdecioSkin);
-      setProgrammerEdecioSkin(progress.programmerEdecioSkin);
-      setChadEdecioSkin(progress.chadEdecioSkin);
-      setCriaEdecioSkin(progress.criaEdecioSkin);
-      setPrisionerEdecioSkin(progress.prisionerEdecioSkin);
-      setMinecraftEdecioSkin(progress.minecraftEdecioSkin);
-      setFutEdecioSkin(progress.futEdecioSkin);
-      setCeoEdecioSkin(progress.ceoEdecioSkin);
-      setGladiatorEdecioSkin(progress.gladiatorEdecioSkin);
-      setSamuraiEdecioSkin(progress.samuraiEdecioSkin);
-      setAcademiaFundo(progress.academiaFundo);
-      setPraiaFundo(progress.praiaFundo);
-      setPrisaoFundo(progress.prisaoFundo);
-      setNetherFundo(progress.netherFundo);
-      setCasaAutomaticaFundo(progress.casaAutomaticaFundo);
-      setFutFundo(progress.futFundo);
-      setCidadeFundo(progress.cidadeFundo);
-      setDesertoFundo(progress.desertoFundo);
-      setTemploFundo(progress.temploFundo);
-    };
-
-    reader.readAsText(file);
+  function setAllStates(progress) {
+    // Atualizar os estados com os valores do save
+    setCliques(progress.cliques);
+    setMultiplicador(progress.multiplicador);
+    setCliquesPorSegundo(progress.cliquesPorSegundo);
+    setEdecio(progress.edecio);
+    setWallpaper(progress.wallpaper);
+    setCustoUpgrade1(progress.custoUpgrade1);
+    setCustoUpgrade2(progress.custoUpgrade2);
+    setCustoUpgrade3(progress.custoUpgrade3);
+    setCustoUpgrade4(progress.custoUpgrade4);
+    setCustoUpgrade5(progress.custoUpgrade5);
+    setCustoUpgrade6(progress.custoUpgrade6);
+    setCustoUpgrade7(progress.custoUpgrade7);
+    setCustoUpgrade8(progress.custoUpgrade8);
+    setCustoUpgrade9(progress.custoUpgrade9);
+    setCustoUpgrade10(progress.custoUpgrade10);
+    setCustoUpgrade11(progress.custoUpgrade11);
+    setCustoUpgrade12(progress.custoUpgrade12);
+    setCustoUpgrade13(progress.custoUpgrade13);
+    setCustoUpgrade14(progress.custoUpgrade14);
+    setCustoUpgrade15(progress.custoUpgrade15);
+    setCustoUpgrade16(progress.custoUpgrade16);
+    setCustoUpgrade17(progress.custoUpgrade17);
+    setCustoUpgrade18(progress.custoUpgrade18);
+    setNivelUpgrade1(progress.nivelUpgrade1);
+    setNivelUpgrade2(progress.nivelUpgrade2);
+    setNivelUpgrade3(progress.nivelUpgrade3);
+    setNivelUpgrade4(progress.nivelUpgrade4);
+    setNivelUpgrade5(progress.nivelUpgrade5);
+    setNivelUpgrade6(progress.nivelUpgrade6);
+    setNivelUpgrade7(progress.nivelUpgrade7);
+    setNivelUpgrade8(progress.nivelUpgrade8);
+    setNivelUpgrade9(progress.nivelUpgrade9);
+    setNivelUpgrade10(progress.nivelUpgrade10);
+    setNivelUpgrade11(progress.nivelUpgrade11);
+    setNivelUpgrade12(progress.nivelUpgrade12);
+    setNivelUpgrade13(progress.nivelUpgrade13);
+    setNivelUpgrade14(progress.nivelUpgrade14);
+    setNivelUpgrade15(progress.nivelUpgrade15);
+    setNivelUpgrade16(progress.nivelUpgrade16);
+    setNivelUpgrade17(progress.nivelUpgrade17);
+    setNivelUpgrade18(progress.nivelUpgrade18);
+    setCpsUpgrade1(progress.cpsUpgrade1);
+    setCpsUpgrade2(progress.cpsUpgrade2);
+    setCpsUpgrade3(progress.cpsUpgrade3);
+    setCpsUpgrade4(progress.cpsUpgrade4);
+    setCpsUpgrade5(progress.cpsUpgrade5);
+    setCpsUpgrade6(progress.cpsUpgrade6);
+    setCpsUpgrade7(progress.cpsUpgrade7);
+    setCpsUpgrade8(progress.cpsUpgrade8);
+    setCpsUpgrade9(progress.cpsUpgrade9);
+    setCpsUpgrade10(progress.cpsUpgrade10);
+    setCpsUpgrade11(progress.cpsUpgrade11);
+    setCpsUpgrade12(progress.cpsUpgrade12);
+    setCpsUpgrade13(progress.cpsUpgrade13);
+    setCpsUpgrade14(progress.cpsUpgrade14);
+    setCpsUpgrade15(progress.cpsUpgrade15);
+    setCpsUpgrade16(progress.cpsUpgrade16);
+    setCpsUpgrade17(progress.cpsUpgrade17);
+    setCpsUpgrade18(progress.cpsUpgrade18);
+    setNivelPrestigio(progress.nivelPrestigio);
+    setMoedaPrestigio(progress.moedaPrestigio);
+    setMultiplicadorPrestigio(progress.multiplicadorPrestigio);
+    setNivelMultiplicadorPrestigio(progress.nivelMultiplicadorPrestigio);
+    setCoffeeEdecioSkin(progress.coffeeEdecioSkin);
+    setProgrammerEdecioSkin(progress.programmerEdecioSkin);
+    setChadEdecioSkin(progress.chadEdecioSkin);
+    setCriaEdecioSkin(progress.criaEdecioSkin);
+    setPrisionerEdecioSkin(progress.prisionerEdecioSkin);
+    setMinecraftEdecioSkin(progress.minecraftEdecioSkin);
+    setFutEdecioSkin(progress.futEdecioSkin);
+    setCeoEdecioSkin(progress.ceoEdecioSkin);
+    setGladiatorEdecioSkin(progress.gladiatorEdecioSkin);
+    setSamuraiEdecioSkin(progress.samuraiEdecioSkin);
+    setAcademiaFundo(progress.academiaFundo);
+    setPraiaFundo(progress.praiaFundo);
+    setPrisaoFundo(progress.prisaoFundo);
+    setNetherFundo(progress.netherFundo);
+    setCasaAutomaticaFundo(progress.casaAutomaticaFundo);
+    setFutFundo(progress.futFundo);
+    setCidadeFundo(progress.cidadeFundo);
+    setDesertoFundo(progress.desertoFundo);
+    setTemploFundo(progress.temploFundo);
   }
+
+
+
+
 
   const importSaveClick = () => {
     document.getElementById("fileInput").click();
@@ -951,17 +958,58 @@ function App() {
     }
   }, [cliques, worker]);
 
+  // Load Inicial dos dados através dos Cookies
+  useEffect(() => {
+    const encryptedSave = loadFromCookies();
+    if (encryptedSave) {
+      setAllStates(decryptSave(encryptedSave));
+    }
+  }, []);
+  
+  // Save Automático a cada 1 minuto
+  useEffect(() => {
+    const interval = setInterval(() => {
+      saveToCookies(getAllStates());
+    }, AUTO_SAVE_INTERVAL); // 1 minuto
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Save a cada compra de upgrade
+  useEffect(() => {
+    saveToCookies(getAllStates());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nivelUpgrade1,
+      nivelUpgrade2,
+      nivelUpgrade3,  
+      nivelUpgrade4,
+      nivelUpgrade5,
+      nivelUpgrade6,
+      nivelUpgrade7,
+      nivelUpgrade8,
+      nivelUpgrade9,
+      nivelUpgrade10,
+      nivelUpgrade11,
+      nivelUpgrade12,
+      nivelUpgrade13,
+      nivelUpgrade14,
+      nivelUpgrade15,
+      nivelUpgrade16,
+      nivelUpgrade17,
+      nivelUpgrade18]
+);
+
   return (
     <>
       <header className='header'>
         <h3>Versão: 1.3</h3>
         <h1>Edécio <span>Clicker</span></h1>
         <div className="save__container">
-          <h2 onClick={saveProgress}>Exportar Save</h2>
+          <h2 onClick={saveToFile}>Exportar Save</h2>
           <h2 className='import__button' onClick={importSaveClick}>Importar Save<input
             id="fileInput"
             type="file"
-            onChange={loadProgress}
+            onChange={loadFromFile}
           /></h2>
         </div>
       </header>

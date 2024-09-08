@@ -30,7 +30,7 @@ import wallpaper9 from './assets/mainWallpaper9.jpg'
 import wallpaper10 from './assets/mainWallpaper10.jpg'
 import useCookiesSave from './hooks/useCookiesSave';
 import { decryptSave, encryptSave } from './security/crypto'
-import { SAVE_INTERVAL } from './constants'
+import { AUTO_SAVE_INTERVAL } from './constants'
 
 let notificationId = 0; // Let para notificação de Cps na Tela
 
@@ -970,7 +970,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       saveToCookies(getAllStates());
-    }, SAVE_INTERVAL); // 1 minuto
+    }, AUTO_SAVE_INTERVAL); // 1 minuto
 
     return () => clearInterval(interval);
   }, []);

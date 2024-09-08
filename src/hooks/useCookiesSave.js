@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { COOKIES_EXPIRATION, COOKIES_KEY, SPLIT_COOKIE_AMOUNT } from '../constants';
+import { AUTO_SAVE_TOLERANCE_AFTER_BUY, COOKIES_EXPIRATION, COOKIES_KEY, SPLIT_COOKIE_AMOUNT } from '../constants';
 import { useDebounce } from './useDebounce';
 import { decryptSave, encryptSave } from '../security/crypto';
 
@@ -55,7 +55,7 @@ function getFromCookies() {
  */
 export default function useCookiesSave() {
   const [savedData, setSavedData] = useState(null);
-  const debouncedSaveData = useDebounce(savedData, 5000);
+  const debouncedSaveData = useDebounce(savedData, AUTO_SAVE_TOLERANCE_AFTER_BUY);
 
   useEffect(() => {
     if (debouncedSaveData) {

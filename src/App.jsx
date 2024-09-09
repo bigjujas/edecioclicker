@@ -48,6 +48,8 @@ function App() {
   const [moedaPrestigio, setMoedaPrestigio] = useState(0)
   const [multiplicadorPrestigio, setMultiplicadorPrestigio] = useState(1)
   const [nivelMultiplicadorPrestigio, setNivelMultiplicadorPrestigio] = useState(0)
+  const [saveAgain, setSaveAgain] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   // Utilities 
 
@@ -960,26 +962,36 @@ function App() {
 
   // Load Inicial dos dados através dos Cookies
   useEffect(() => {
-    const encryptedSave = loadFromCookies();
-    if (encryptedSave) {
-      setAllStates(decryptSave(encryptedSave));
+    if (loading) {
+      const encryptedSave = loadFromCookies();
+      if (encryptedSave) {
+        setAllStates(decryptSave(encryptedSave));
+      }
+      setLoading(false);
     }
   }, []);
   
   // Save Automático a cada 1 minuto
   useEffect(() => {
-    const interval = setInterval(() => {
+    if (loading) return;
+    if (saveAgain) {
       saveToCookies(getAllStates());
-    }, AUTO_SAVE_INTERVAL); // 1 minuto
-
-    return () => clearInterval(interval);
-  }, []);
+      setSaveAgain(false)
+    } else {
+      setTimeout(() => {
+        setSaveAgain(true);
+      }, AUTO_SAVE_INTERVAL);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[saveAgain, loading]);
 
   // Save a cada compra de upgrade
   useEffect(() => {
+    if (loading) return;
     saveToCookies(getAllStates());
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nivelUpgrade1,
+  }, [loading,
+      nivelUpgrade1,
       nivelUpgrade2,
       nivelUpgrade3,  
       nivelUpgrade4,

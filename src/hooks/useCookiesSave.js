@@ -18,7 +18,7 @@ function setCookies(saveData) {
 
   // Set each chunk as a separate cookie
   chunks.forEach((chunk, index) => {
-    document.cookie = `${COOKIES_KEY}_${index}=${encodeURIComponent(chunk)}; max-age=${COOKIES_EXPIRATION}`;
+    document.cookie = `${COOKIES_KEY}_${index}=${encodeURIComponent(chunk)}; max-age=${COOKIES_EXPIRATION}; SameSite=Strict`;
   });
 }
 
